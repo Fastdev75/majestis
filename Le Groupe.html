@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Majestis — Le Groupe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold-1: #d9b86a;
+    --gold-2: #c9a35d;
+    --gold-soft: #e8d3a0;
+    --ivory: #f4ede0;
+    --ink: #0a0d18;
+    --paris-deep: #0c1132;
+    --gold-gradient: linear-gradient(135deg, #f5d68a 0%, #e6b85f 30%, #d49d3e 55%, #e6b85f 80%, #f5d68a 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    color: var(--ivory);
+    background: var(--paris-deep);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 2;
+    opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .ambient {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(circle 700px at 10% 5%, rgba(217,184,106,0.10), transparent 70%),
+      radial-gradient(circle 800px at 90% 95%, rgba(217,184,106,0.07), transparent 70%);
+  }
+  .corner {
+    position: fixed; width: 38px; height: 38px;
+    z-index: 6; pointer-events: none; opacity: 0.55;
+  }
+  .corner svg { width: 100%; height: 100%; }
+  .corner.tl { top: 18px; left: 18px; }
+  .corner.tr { top: 18px; right: 18px; transform: scaleX(-1); }
+
+  /* Back arrow (gold, fixed) */
+  .back-link {
+    position: absolute; top: 122px; left: 36px; z-index: 30;
+    display: inline-flex; align-items: center; gap: 14px;
+    text-decoration: none;
+    color: var(--gold-1);
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px; font-weight: 400;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    padding: 8px 0;
+    transition: color .3s ease;
+  }
+  .back-link:hover { color: var(--gold-soft); }
+  .back-link .back-icon {
+    width: 36px; height: 1px;
+    background: currentColor;
+    position: relative;
+    transition: width .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .back-link .back-icon::before,
+  .back-link .back-icon::after {
+    content: ""; position: absolute; left: 0; top: 50%;
+    width: 9px; height: 1px; background: currentColor;
+    transform-origin: left center;
+  }
+  .back-link .back-icon::before { transform: translateY(-0.5px) rotate(-32deg); }
+  .back-link .back-icon::after  { transform: translateY(-0.5px) rotate(32deg);  }
+  .back-link:hover .back-icon { width: 46px; }
+  body > header.scrolled ~ .back-link { display: none; }
+
+  /* ---------- Header ---------- */
+  body > header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    padding: 14px 32px 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    transition: background .35s ease, padding .35s ease;
+  }
+  body > header.scrolled {
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    background: rgba(12, 17, 50, 0.78);
+    border-bottom: 1px solid rgba(217,184,106,0.18);
+    padding-top: 10px; padding-bottom: 8px;
+  }
+  .brand { justify-self: start; display: flex; align-items: center; text-decoration: none; }
+  .brand-logo {
+    width: 88px; height: 88px;
+    background: url('assets/logo-majestis.png') center / contain no-repeat;
+    filter: drop-shadow(0 6px 24px rgba(217,184,106,0.4));
+    transition: width .35s ease, height .35s ease;
+  }
+  body > header.scrolled .brand-logo { width: 60px; height: 60px; }
+
+  nav.primary {
+    justify-self: end; margin-right: 8px;
+    display: flex; gap: 2px; align-items: center;
+  }
+  .nav-item { position: relative; padding: 18px 0; display: flex; justify-content: center; }
+  .nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Jost', sans-serif; font-weight: 400;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(244,237,224,0.9);
+    background: none; border: 0; cursor: pointer; text-decoration: none;
+    padding: 10px 16px;
+    transition: color .25s ease;
+    white-space: nowrap; text-decoration: none;
+  }
+  .nav-link .chev { width: 9px; height: 9px; opacity: 0.55; transition: opacity .25s ease; }
+  .nav-item:hover .nav-link { color: var(--gold-soft); border-color: var(--gold-1); }
+  .nav-item:hover .nav-link .chev { opacity: 1; }
+
+  .dropdown {
+    position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%);
+    min-width: 260px;
+    background: rgba(8, 11, 22, 0.85);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(217,184,106,0.22);
+    border-top: 1px solid rgba(217,184,106,0.55);
+    padding: 22px 26px 26px;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .25s ease, visibility .25s;
+  }
+  .dropdown::before {
+    content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-1), transparent);
+  }
+  .nav-item:hover .dropdown, .nav-item:focus-within .dropdown, .nav-item.open .dropdown {
+    opacity: 1; visibility: visible; pointer-events: auto;
+  }
+  .dropdown-eyebrow {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: var(--gold-1); font-size: 12px; letter-spacing: 0.06em;
+    margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+  }
+  .dropdown-eyebrow::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(217,184,106,0.4), transparent);
+  }
+  .dropdown ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .dropdown a {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 9px 0;
+    color: rgba(244,237,224,0.78); text-decoration: none;
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: 18px; letter-spacing: 0.02em;
+    transition: color .2s ease;
+    border-bottom: 1px solid rgba(217,184,106,0.08);
+    white-space: nowrap;
+  }
+  .dropdown a:last-child { border-bottom: 0; }
+  .dropdown a .dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--gold-1); opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .dropdown a:hover { color: var(--gold-soft); }
+  .dropdown a:hover .dot { opacity: 1; }
+  .dropdown a .arrow {
+    margin-left: auto; color: var(--gold-1); opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity .25s ease, transform .25s ease;
+    font-size: 14px;
+  }
+  .dropdown a:hover .arrow { opacity: 1; transform: translateX(0); }
+
+  .lang { justify-self: end; display: flex; align-items: center; gap: 18px; }
+  .lang-switch {
+    display: inline-flex; align-items: center;
+    border: 1px solid rgba(217,184,106,0.4);
+    border-radius: 999px; padding: 4px;
+    background: rgba(8,11,22,0.4);
+  }
+  .lang-btn {
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    padding: 8px 14px; border-radius: 999px;
+    background: transparent; color: rgba(244,237,224,0.7);
+    border: 0; cursor: pointer;
+    transition: color .3s ease, background .3s ease;
+  }
+  .lang-btn.active {
+    color: var(--ink);
+    background: var(--gold-gradient);
+    box-shadow: 0 2px 14px rgba(217,184,106,0.35);
+  }
+
+  /* ---------- Page hero ---------- */
+  .page-hero {
+    position: relative; z-index: 1;
+    padding: 220px 56px 40px;
+    text-align: center;
+  }
+  .breadcrumb {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Jost', sans-serif; font-size: 10.5px;
+    letter-spacing: 0.34em; text-transform: uppercase;
+    color: rgba(244,237,224,0.6);
+    margin-bottom: 28px;
+  }
+  .breadcrumb a { color: rgba(244,237,224,0.6); text-decoration: none; transition: color .25s ease; }
+  .breadcrumb a:hover { color: var(--gold-soft); }
+  .breadcrumb .sep { color: var(--gold-1); }
+  .breadcrumb .here { color: var(--gold-1); }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 4.4vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.005em;
+    color: var(--ivory);
+    text-wrap: balance;
+    margin-bottom: 22px;
+  }
+  .page-title em {
+    font-style: italic; font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 12s ease-in-out infinite;
+    filter: drop-shadow(0 0 22px rgba(212,157,62,0.35));
+  }
+  @keyframes shimmer {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .page-rule {
+    display: block; width: 1px; height: 56px;
+    background: linear-gradient(to bottom, transparent, var(--gold-1));
+    margin: 36px auto 0;
+  }
+
+  /* ---------- NOUS section ---------- */
+  .nous {
+    position: relative; z-index: 1;
+    padding: 30px 56px 120px;
+    max-width: 1480px;
+    margin: 0 auto;
+  }
+  .nous-head {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .nous-eyebrow {
+    display: inline-flex; align-items: center; gap: 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-1);
+  }
+  .nous-eyebrow::before, .nous-eyebrow::after {
+    content: ""; width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-1), transparent);
+  }
+  .nous-eyebrow em {
+    font-style: normal;
+    font-size: 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    background: var(--gold-gradient);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    background-size: 220% 100%;
+    animation: shimmer 12s ease-in-out infinite;
+  }
+  .nous-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(17px, 1.3vw, 21px);
+    color: rgba(244,237,224,0.72);
+    max-width: 640px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+    text-wrap: balance;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+  .member {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .member-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: rgba(217,184,106,0.05);
+    border: 1px solid rgba(217,184,106,0.18);
+    isolation: isolate;
+  }
+  .member-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(12,17,50,0) 60%, rgba(12,17,50,0.45) 100%);
+    pointer-events: none;
+  }
+  .member-photo .img {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center top;
+    filter: grayscale(100%) contrast(1.04);
+    transition: filter 1s ease, transform 1.4s cubic-bezier(.2,.7,.2,1);
+  }
+  .member:hover .member-photo .img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.04);
+  }
+  /* gold frame on hover */
+  .member-photo .frame {
+    position: absolute; inset: 14px;
+    border: 1px solid rgba(217,184,106,0);
+    pointer-events: none; z-index: 2;
+    transition: border-color .5s ease, inset .5s ease;
+  }
+  .member:hover .member-photo .frame {
+    border-color: rgba(217,184,106,0.55);
+    inset: 18px;
+  }
+
+  .member-info {
+    padding-top: 22px;
+    display: flex; flex-direction: column;
+    align-items: center;
+  }
+  .member-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(22px, 1.9vw, 32px);
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+  .member-name .last {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-left: 8px;
+    filter: drop-shadow(0 0 14px rgba(212,157,62,0.25));
+  }
+  .member-desc {
+    margin-top: 18px;
+    padding: 0 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 1.7vw, 28px);
+    line-height: 1.55;
+    color: rgba(244,237,224,0.95);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 980px) {
+    body > header { padding: 12px 20px 0; gap: 14px; }
+    nav.primary { display: none; }
+    .brand-logo { width: 64px; height: 64px; }
+    .back-link { top: 96px; left: 18px; font-size: 9.5px; letter-spacing: 0.3em; }
+    .page-hero { padding: 160px 24px 30px; }
+    .nous { padding: 20px 24px 90px; }
+    .team-grid { grid-template-columns: 1fr; gap: 40px; }
+    .histoire { padding: 60px 24px 120px; }
+  }
+
+  /* ---------- Notre Histoire / Nos Valeurs ---------- */
+  .histoire {
+    position: relative; z-index: 1;
+    padding: 60px 56px 100px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .essay {
+    display: block;
+    padding: 60px 0;
+  }
+  .essay + .essay {
+    border-top: 1px solid rgba(217,184,106,0.18);
+    padding-top: 60px;
+  }
+  .essay.reverse { text-align: right; }
+  .essay:not(.reverse) { text-align: left; }
+
+  .essay-title-block {
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .essay.reverse .essay-title-block { align-items: flex-end; }
+
+  .essay-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 2.6vw, 40px);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--ivory);
+  }
+  .essay-title em {
+    font-style: italic; font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 12s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(212,157,62,0.3));
+    margin-right: 8px;
+  }
+  .essay-rule {
+    width: 44px; height: 1px;
+    background: var(--gold-1);
+    margin-top: 18px;
+  }
+
+  .essay-quote {
+    position: relative;
+    padding: 0;
+    max-width: 880px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .essay.reverse .essay-quote { margin-left: auto; }
+  .essay-quote .qmark {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(48px, 4.4vw, 64px);
+    line-height: 1;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+    padding: 0 8px;
+    height: 0.7em;
+    overflow: visible;
+  }
+  .essay-quote .qmark.open {
+    align-self: flex-start;
+    margin-bottom: 14px;
+  }
+  .essay-quote .qmark.close {
+    align-self: flex-end;
+    margin-top: 14px;
+  }
+  .essay-quote.brackets .qmark { font-style: normal; }
+  .essay-quote.brackets .qmark.open { top: -10px; left: -6px; }
+  .essay-quote.brackets .qmark.close { bottom: -34px; right: -6px; }
+
+  .essay-text + .essay-text { margin-top: 1em; }
+  .essay-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 1.7vw, 28px);
+    line-height: 1.65;
+    color: rgba(244,237,224,0.9);
+    text-wrap: pretty;
+  }
+  .essay.reverse .essay-text { text-align: right; }
+  .essay-text .firstcap {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.4em;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    padding-right: 2px;
+    filter: drop-shadow(0 0 14px rgba(212,157,62,0.3));
+  }
+
+  @media (max-width: 900px) {
+    .histoire { padding: 40px 24px 90px; }
+    .essay, .essay.reverse { text-align: left; padding: 36px 0; }
+    .essay.reverse .essay-title-block { align-items: flex-start; }
+    .essay.reverse .essay-quote { margin-left: 0; }
+    .essay.reverse .essay-text { text-align: left; }
+    .essay-quote { padding: 8px 40px; }
+    .essay + .essay .essay-title-block,
+    .essay + .essay .essay-quote { margin-left: 0; }
+  }
+
+
+  /* ---------- Mobile menu (burger + drawer) ---------- */
+  .mobile-burger {
+    display: none;
+    position: fixed;
+    top: 26px; right: 22px;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(217,184,106,0.35);
+    background: rgba(8, 11, 22, 0.55);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    cursor: pointer;
+    padding: 0;
+    z-index: 30;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background .3s ease, border-color .3s ease;
+  }
+  .mobile-burger:hover { border-color: var(--gold-1); background: rgba(217,184,106,0.08); }
+  .mobile-burger span {
+    display: block;
+    width: 18px; height: 1px;
+    background: var(--gold-1);
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
+    transform-origin: center;
+  }
+  .mobile-burger.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .mobile-burger.is-open span:nth-child(2) { opacity: 0; }
+  .mobile-burger.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-drawer {
+    position: fixed; inset: 0;
+    background: rgba(8, 11, 22, 0.96);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    z-index: 25;
+    opacity: 0; visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity .35s ease, transform .45s ease, visibility .35s;
+    padding: 110px 32px 48px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .mobile-drawer.is-open {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .mobile-drawer ul { list-style: none; margin: 0; padding: 0; }
+  .mobile-drawer .md-lang {
+    display: flex; justify-content: center;
+    margin-bottom: 36px;
+  }
+  .mobile-drawer .md-lang .lang-switch { background: rgba(8,11,22,0.4); }
+  .md-item { border-bottom: 1px solid rgba(217,184,106,0.18); }
+  .md-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 26px;
+    letter-spacing: -0.005em;
+    color: var(--ivory);
+    text-decoration: none;
+    background: none; border: 0; cursor: pointer;
+    width: 100%; text-align: left;
+  }
+  .md-link:hover { color: var(--gold-soft); }
+  .md-chev {
+    width: 14px; height: 14px;
+    color: var(--gold-1);
+    transition: transform .35s ease;
+    flex-shrink: 0;
+  }
+  .md-item.is-open .md-chev { transform: rotate(180deg); }
+  .md-sub {
+    max-height: 0; overflow: hidden;
+    transition: max-height .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .md-item.is-open .md-sub { max-height: 600px; padding-bottom: 14px; }
+  .md-sub a {
+    display: block;
+    padding: 12px 0 12px 22px;
+    margin: 0 0 2px 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: rgba(244,237,224,0.78);
+    text-decoration: none;
+    border-left: 1px solid rgba(217,184,106,0.22);
+  }
+  .md-sub a:hover { color: var(--gold-soft); border-left-color: var(--gold-1); }
+  body.menu-locked { overflow: hidden; }
+
+  @media (max-width: 980px) {
+    .mobile-burger { display: flex; }
+    body > header nav.primary { display: none !important; }
+    body > header .lang { display: none !important; }
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="corner tl"><svg viewBox="0 0 40 40" fill="none" stroke="#d9b86a" stroke-width="0.8"><path d="M0 14 V0 H14"/><path d="M0 24 V20" opacity="0.6"/><circle cx="2" cy="2" r="1.2" fill="#d9b86a" stroke="none"/></svg></div>
+  <div class="corner tr"><svg viewBox="0 0 40 40" fill="none" stroke="#d9b86a" stroke-width="0.8"><path d="M0 14 V0 H14"/><path d="M0 24 V20" opacity="0.6"/><circle cx="2" cy="2" r="1.2" fill="#d9b86a" stroke="none"/></svg></div>
+
+  <a href="Home.html" class="back-link" aria-label="Retour">
+    <span class="back-icon" aria-hidden="true"></span>
+    <span data-i18n="back">Retour</span>
+  </a>
+
+  <!-- Header -->
+  <header id="siteHeader">
+    <a class="brand" href="Home.html" aria-label="Majestis — Accueil">
+      <span class="brand-logo" role="img" aria-label="Majestis"></span>
+    </a>
+
+    <nav class="primary" aria-label="Navigation principale">
+      <div class="nav-item">
+        <a class="nav-link" href="Home.html">
+          <span data-i18n="nav.home">Accueil</span>
+        </a>
+      </div>
+
+      <div class="nav-item">
+        <a class="nav-link" href="Le Groupe.html">
+          <span data-i18n="nav.group">Le Groupe</span>
+        </a>
+      </div>
+
+      <div class="nav-item">
+        <a class="nav-link" href="Art des Metiers.html">
+          <span data-i18n="nav.art">L'Art des Métiers</span>
+        </a>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <span data-i18n="nav.space">Espaces &amp; Structures</span>
+          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-eyebrow" data-i18n="nav.space.eyebrow">Architecture intérieure</div>
+          <ul>
+            <li><a href="Peintures.html"><span class="dot"></span><span data-i18n="nav.space.peintures">Peintures</span><span class="arrow">→</span></a></li>
+            <li><a href="Moulures.html"><span class="dot"></span><span data-i18n="nav.space.moulures">Moulures</span><span class="arrow">→</span></a></li>
+            <li><a href="Dorure.html"><span class="dot"></span><span data-i18n="nav.space.dorure">Dorure</span><span class="arrow">→</span></a></li>
+            <li><a href="Mosaique.html"><span class="dot"></span><span data-i18n="nav.space.mosaique">Mosaïque</span><span class="arrow">→</span></a></li>
+            <li><a href="Fenetres.html"><span class="dot"></span><span data-i18n="nav.space.fenetre">Fenêtres</span><span class="arrow">→</span></a></li>
+            <li><a href="Escaliers.html"><span class="dot"></span><span data-i18n="nav.space.escalier">Escaliers</span><span class="arrow">→</span></a></li>
+            <li><a href="Sol.html"><span class="dot"></span><span data-i18n="nav.space.sol">Sol</span><span class="arrow">→</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <span data-i18n="nav.contact">Nous contacter</span>
+          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-eyebrow" data-i18n="nav.contact.eyebrow">Entrer en relation</div>
+          <ul>
+            <li><a href="Contact.html"><span class="dot"></span><span data-i18n="nav.contact.client">Parler de notre projet</span><span class="arrow">→</span></a></li>
+            <li><a href="Nous Rejoindre.html"><span class="dot"></span><span data-i18n="nav.contact.join">Nous rejoindre</span><span class="arrow">→</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="lang">
+      <div class="lang-switch" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="breadcrumb">
+      <a href="Home.html" data-i18n="bc.home">Accueil</a>
+      <span class="sep">—</span>
+      <span class="here" data-i18n="bc.here">Le Groupe</span>
+    </div>
+    <h1 class="page-title">
+      <span data-i18n="title.t1">Le</span>
+      <em data-i18n="title.t2">Groupe</em>
+    </h1>
+    <span class="page-rule" aria-hidden="true"></span>
+  </section>
+
+  <!-- NOUS -->
+  <section class="nous">
+    <div class="team-grid">
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-benoit.png');"></div>
+          <div class="frame"></div>
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Benoît <span class="last">DROUIN</span></h3>
+          <p class="member-desc" data-i18n="bio.benoit">Benoît Drouin a débuté à seize ans comme apprenti maçon et tailleur de pierre chez les Compagnons du Devoir, se formant sur des chantiers emblématiques et pilotant des projets d'envergure comme Villers-Cotterêts, Versailles, le Louvre, les Invalides, et la flèche de Notre-Dame de Paris, avec une clientèle internationale exigeante (Émirats, USA).</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-geoffroy.png');"></div>
+          <div class="frame"></div>
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Geoffroy <span class="last">BIGO</span></h3>
+          <p class="member-desc" data-i18n="bio.geoffroy">Geoffroy Bigo accompagne depuis de nombreuses années les acteurs du patrimoine, du luxe et de la tradition. Son expertise des métiers d'art et sa connaissance fine des écosystèmes d'artisans permettent de mobiliser les talents les plus rares pour chaque chantier d'exception, dans le respect absolu des matériaux d'origine et des exigences patrimoniales.</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-stephanie.png');"></div>
+          <div class="frame"></div>
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Stéphanie <span class="last">REDONDO</span></h3>
+          <p class="member-desc" data-i18n="bio.stephanie">Après une carrière dans de grands groupes (Nexity, Groupe Bertrand, EOL, Coreal) et des cabinets prestigieux comme FRANC Architecture, Stéphanie garantit une communication fluide, une prise de décision rapide et une cohérence parfaite entre les différents métiers.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- NOTRE HISTOIRE & NOS VALEURS -->
+  <section class="histoire">
+    <div class="essay">
+      <div class="essay-title-block">
+        <h2 class="essay-title">
+          <span data-i18n="hist.t1">Notre</span>
+          <em data-i18n="hist.t2">Histoire</em>
+        </h2>
+        <span class="essay-rule" aria-hidden="true"></span>
+      </div>
+      <blockquote class="essay-quote">
+        <span class="qmark open" aria-hidden="true">“</span>
+        <div data-i18n="hist.body">
+          <p class="essay-text"><span class="firstcap">L</span>e Groupe Majestis est né de la volonté de réunir excellence technique, culture architecturale et accompagnement haut de gamme. Issu de l'expérience de professionnels de l'architecture, de la rénovation d'exception et de l'immobilier, le groupe développe une approche exigeante du bâti. Nous intervenons sur des actifs résidentiels, tertiaires et patrimoniaux avec une vision globale et contemporaine.</p>
+          <p class="essay-text">Chaque projet est pensé comme une réalisation unique, alliant précision, cohérence et maîtrise technique. Inspiré par l'élégance du patrimoine parisien, le Groupe Majestis préserve l'identité des lieux tout en les sublimant durablement. Notre exigence s'exprime dans le choix des matériaux, la qualité d'exécution et le soin porté aux finitions.</p>
+          <p class="essay-text">Nous accordons une attention particulière au respect des délais, des budgets et des attentes de nos clients. Au-delà de la rénovation, nous défendons une vision du luxe sobre, élégante et maîtrisée. Nous accompagnons architectes, investisseurs, syndics et propriétaires privés dans leurs projets les plus exigeants. Aujourd'hui, le Groupe Majestis s'impose comme un partenaire de confiance dans la valorisation d'actifs d'exception.</p>
+        </div>
+        <span class="qmark close" aria-hidden="true">”</span>
+      </blockquote>
+    </div>
+
+    <div class="essay">
+      <div class="essay-title-block">
+        <h2 class="essay-title">
+          <em data-i18n="val.t1">Nos</em>
+          <span data-i18n="val.t2">Valeurs</span>
+        </h2>
+        <span class="essay-rule" aria-hidden="true"></span>
+      </div>
+      <blockquote class="essay-quote">
+        <span class="qmark open" aria-hidden="true">“</span>
+        <div data-i18n="val.body">
+          <p class="essay-text"><span class="firstcap">N</span>os valeurs reposent avant tout sur l'exigence, la précision et le respect des engagements pris auprès de nos clients et partenaires. Nous défendons une approche où la qualité d'exécution, la maîtrise technique et le sens du détail occupent une place centrale.</p>
+          <p class="essay-text">Attaché au patrimoine architectural et à l'élégance des ouvrages, le Groupe Majestis veille à préserver l'identité des lieux tout en les valorisant durablement. Nous croyons en une vision du luxe sobre et intemporelle, fondée sur la noblesse des matériaux, la cohérence esthétique et la pérennité des réalisations.</p>
+          <p class="essay-text">La confiance, la transparence et l'écoute constituent le socle de chacune de nos collaborations. Notre force réside également dans notre capacité à coordonner des savoir-faire complémentaires autour d'un même niveau d'excellence. Chaque projet est conduit avec le même engagement, qu'il s'agisse d'un actif patrimonial, résidentiel ou tertiaire. Le Groupe Majestis porte ainsi une vision à la fois contemporaine, institutionnelle et profondément humaine de la rénovation haut de gamme.</p>
+        </div>
+        <span class="qmark close" aria-hidden="true">”</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <script>
+    const I18N = {
+      fr: {
+        "nav.home": "Accueil",
+        "nav.group": "Le Groupe",
+        "nav.art": "L'Art des Métiers", "nav.art.eyebrow": "Matières & savoir-faire",
+        "nav.art.verre": "Verre", "nav.art.bois": "Bois", "nav.art.dorures": "Dorures",
+        "nav.art.mineraux": "Minéraux", "nav.art.metaux": "Métaux & alliages",
+        "nav.space": "Espaces & Structures", "nav.space.eyebrow": "Architecture intérieure",
+        "nav.space.peintures": "Peintures", "nav.space.moulures": "Moulures", "nav.space.dorure": "Dorure",
+        "nav.space.mosaique": "Mosaïque", "nav.space.fenetre": "Fenêtres", "nav.space.escalier": "Escaliers", "nav.space.sol": "Sol",
+        "nav.contact": "Nous contacter", "nav.contact.eyebrow": "Entrer en relation",
+        "nav.contact.client": "Parler de notre projet", "nav.contact.join": "Nous rejoindre",
+        "bc.home": "Accueil", "bc.here": "Le Groupe",
+        "title.t1": "Le", "title.t2": "Groupe",
+        "nous.title": "Nous",
+        "nous.intro": "Trois regards complémentaires, une même exigence, l'amour du beau geste, du détail juste, du patrimoine vivant.",
+        "role.founder": "Fondateur",
+        "role.partner": "Associé",
+        "role.director": "Directrice",
+        "back": "Retour",
+        "bio.benoit": "Benoît Drouin a débuté à seize ans comme apprenti maçon et tailleur de pierre chez les Compagnons du Devoir, se formant sur des chantiers emblématiques et pilotant des projets d'envergure comme Villers-Cotterêts, Versailles, le Louvre, les Invalides, et la flèche de Notre-Dame de Paris, avec une clientèle internationale exigeante (Émirats, USA).",
+        "bio.geoffroy": "Geoffroy Bigo accompagne depuis de nombreuses années les acteurs du patrimoine, du luxe et de la tradition. Son expertise des métiers d'art et sa connaissance fine des écosystèmes d'artisans permettent de mobiliser les talents les plus rares pour chaque chantier d'exception, dans le respect absolu des matériaux d'origine et des exigences patrimoniales.",
+        "bio.stephanie": "Après une carrière dans de grands groupes (Nexity, Groupe Bertrand, EOL, Coreal) et des cabinets prestigieux comme FRANC Architecture, Stéphanie garantit une communication fluide, une prise de décision rapide et une cohérence parfaite entre les différents métiers.",
+        "hist.t1": "Notre",
+        "hist.t2": "Histoire",
+        "hist.body": "<p class='essay-text'><span class='firstcap'>L</span>e Groupe Majestis est né de la volonté de réunir excellence technique, culture architecturale et accompagnement haut de gamme. Issu de l'expérience de professionnels de l'architecture, de la rénovation d'exception et de l'immobilier, le groupe développe une approche exigeante du bâti. Nous intervenons sur des actifs résidentiels, tertiaires et patrimoniaux avec une vision globale et contemporaine.</p><p class='essay-text'>Chaque projet est pensé comme une réalisation unique, alliant précision, cohérence et maîtrise technique. Inspiré par l'élégance du patrimoine parisien, le Groupe Majestis préserve l'identité des lieux tout en les sublimant durablement. Notre exigence s'exprime dans le choix des matériaux, la qualité d'exécution et le soin porté aux finitions.</p><p class='essay-text'>Nous accordons une attention particulière au respect des délais, des budgets et des attentes de nos clients. Au-delà de la rénovation, nous défendons une vision du luxe sobre, élégante et maîtrisée. Nous accompagnons architectes, investisseurs, syndics et propriétaires privés dans leurs projets les plus exigeants. Aujourd'hui, le Groupe Majestis s'impose comme un partenaire de confiance dans la valorisation d'actifs d'exception.</p>",
+        "val.t1": "Nos",
+        "val.t2": "Valeurs",
+        "val.body": "<p class='essay-text'><span class='firstcap'>N</span>os valeurs reposent avant tout sur l'exigence, la précision et le respect des engagements pris auprès de nos clients et partenaires. Nous défendons une approche où la qualité d'exécution, la maîtrise technique et le sens du détail occupent une place centrale.</p><p class='essay-text'>Attaché au patrimoine architectural et à l'élégance des ouvrages, le Groupe Majestis veille à préserver l'identité des lieux tout en les valorisant durablement. Nous croyons en une vision du luxe sobre et intemporelle, fondée sur la noblesse des matériaux, la cohérence esthétique et la pérennité des réalisations.</p><p class='essay-text'>La confiance, la transparence et l'écoute constituent le socle de chacune de nos collaborations. Notre force réside également dans notre capacité à coordonner des savoir-faire complémentaires autour d'un même niveau d'excellence. Chaque projet est conduit avec le même engagement, qu'il s'agisse d'un actif patrimonial, résidentiel ou tertiaire. Le Groupe Majestis porte ainsi une vision à la fois contemporaine, institutionnelle et profondément humaine de la rénovation haut de gamme.</p>"
+      },
+      en: {
+        "nav.home": "Home",
+        "nav.group": "The House",
+        "nav.art": "The Crafts", "nav.art.eyebrow": "Materials & savoir-faire",
+        "nav.art.verre": "Glass", "nav.art.bois": "Wood", "nav.art.dorures": "Gilding",
+        "nav.art.mineraux": "Minerals", "nav.art.metaux": "Metals & alloys",
+        "nav.space": "Spaces & Structures", "nav.space.eyebrow": "Interior architecture",
+        "nav.space.peintures": "Paintings", "nav.space.moulures": "Mouldings", "nav.space.dorure": "Gilding",
+        "nav.space.mosaique": "Mosaic", "nav.space.fenetre": "Windows", "nav.space.escalier": "Staircases", "nav.space.sol": "Floors",
+        "nav.contact": "Contact", "nav.contact.eyebrow": "Get in touch",
+        "nav.contact.client": "Talk about your project", "nav.contact.join": "Join us",
+        "bc.home": "Home", "bc.here": "The House",
+        "title.t1": "The", "title.t2": "House",
+        "nous.title": "Us",
+        "nous.intro": "Three complementary perspectives, one shared demand, the love of a fine gesture, of the right detail, of living heritage.",
+        "role.founder": "Founder",
+        "role.partner": "Partner",
+        "role.director": "Director",
+        "back": "Back",
+        "bio.benoit": "Benoît Drouin began at sixteen as an apprentice mason and stonecutter with the Compagnons du Devoir, training on landmark sites and leading major projects such as Villers-Cotterêts, Versailles, the Louvre, Les Invalides, and the spire of Notre-Dame de Paris, for a demanding international clientele (Emirates, USA).",
+        "bio.geoffroy": "For many years Geoffroy Bigo has supported actors of heritage, luxury and tradition. His expertise in the arts and crafts and his fine knowledge of artisan ecosystems make it possible to mobilise the rarest talents for every exceptional project, with absolute respect for original materials and heritage requirements.",
+        "bio.stephanie": "After a career in major groups (Nexity, Groupe Bertrand, EOL, Coreal) and prestigious firms such as FRANC Architecture, Stéphanie guarantees fluid communication, quick decision-making and perfect coherence between the different trades.",
+        "hist.t1": "Our",
+        "hist.t2": "Story",
+        "hist.body": "<p class='essay-text'><span class='firstcap'>T</span>he Majestis Group was born from the desire to unite technical excellence, architectural culture, and high-end support. Drawing on the expertise of professionals in architecture, exceptional renovation, and real estate, the group develops a demanding approach to the built environment. We work on residential, commercial, and heritage assets with a global, contemporary vision.</p><p class='essay-text'>Each project is conceived as a unique creation, combining precision, coherence, and technical mastery. Inspired by the elegance of Parisian heritage, the Majestis Group preserves the identity of places while enhancing them sustainably. Our standards are expressed in the choice of materials, the quality of execution, and the care given to every finish.</p><p class='essay-text'>We pay particular attention to respecting deadlines, budgets, and our clients' expectations. Beyond renovation, we defend a vision of luxury that is sober, elegant, and refined. We accompany architects, investors, building managers, and private owners on their most demanding projects. Today, the Majestis Group stands as a trusted partner in the enhancement of exceptional assets.</p>",
+        "val.t1": "Our",
+        "val.t2": "Values",
+        "val.body": "<p class='essay-text'><span class='firstcap'>O</span>ur values rest above all on rigour, precision, and respect for the commitments made to our clients and partners. We champion an approach in which quality of execution, technical mastery, and attention to detail hold a central place.</p><p class='essay-text'>Attached to architectural heritage and the elegance of works, the Majestis Group ensures the identity of places is preserved while being sustainably enhanced. We believe in a vision of luxury that is sober and timeless, founded on the nobility of materials, aesthetic coherence, and the longevity of creations.</p><p class='essay-text'>Trust, transparency, and listening form the foundation of every collaboration. Our strength also lies in our ability to coordinate complementary savoir-faire around a single level of excellence. Each project is conducted with the same commitment, whether it is a heritage, residential, or commercial asset. The Majestis Group thus carries a vision of high-end renovation that is at once contemporary, institutional, and profoundly human.</p>"
+      }
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key]) el.innerHTML = I18N[lang][key];
+      });
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+    }
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.addEventListener('click', () => setLang(b.dataset.lang));
+    });
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+      const btn = item.querySelector('.nav-link');
+      const hasDropdown = item.querySelector('.dropdown');
+      if (!hasDropdown) return;
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-item')) {
+        document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+      }
+    });
+
+    const siteHeader = document.getElementById('siteHeader');
+    function onScroll() {
+      if (window.scrollY > 40) siteHeader.classList.add('scrolled');
+      else siteHeader.classList.remove('scrolled');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
+
+
+  <!-- Mobile menu -->
+  <button class="mobile-burger" id="mobileBurger" aria-label="Menu" aria-controls="mobileDrawer" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="mobile-drawer" id="mobileDrawer" aria-hidden="true" aria-label="Menu mobile">
+    <div class="md-lang">
+      <div class="lang-switch" role="group" aria-label="Langue">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+    <ul>
+      <li class="md-item"><a class="md-link" href="Home.html"><span data-i18n="nav.home">Accueil</span></a></li>
+      <li class="md-item"><a class="md-link" href="Le Groupe.html"><span data-i18n="nav.group">Le Groupe</span></a></li>
+      <li class="md-item"><a class="md-link" href="Art des Metiers.html"><span data-i18n="nav.art">L'Art des Métiers</span></a></li>
+      <li class="md-item">
+        <button class="md-link" type="button"><span data-i18n="nav.space">Espaces &amp; Structures</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>
+        <ul class="md-sub">
+          <li><a href="Peintures.html"><span data-i18n="nav.space.peintures">Peintures</span></a></li>
+          <li><a href="Moulures.html"><span data-i18n="nav.space.moulures">Moulures</span></a></li>
+          <li><a href="Dorure.html"><span data-i18n="nav.space.dorure">Dorure</span></a></li>
+          <li><a href="Mosaique.html"><span data-i18n="nav.space.mosaique">Mosaïque</span></a></li>
+          <li><a href="Fenetres.html"><span data-i18n="nav.space.fenetre">Fenêtres</span></a></li>
+          <li><a href="Escaliers.html"><span data-i18n="nav.space.escalier">Escaliers</span></a></li>
+          <li><a href="Sol.html"><span data-i18n="nav.space.sol">Sol</span></a></li>
+        </ul>
+      </li>
+      <li class="md-item">
+        <button class="md-link" type="button"><span data-i18n="nav.contact">Nous contacter</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>
+        <ul class="md-sub">
+          <li><a href="Contact.html"><span data-i18n="nav.contact.client">Parler de notre projet</span></a></li>
+          <li><a href="Nous Rejoindre.html"><span data-i18n="nav.contact.join">Nous rejoindre</span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <script>
+  (function() {
+    const burger = document.getElementById('mobileBurger');
+    const drawer = document.getElementById('mobileDrawer');
+    if (!burger || !drawer) return;
+    function setOpen(open) {
+      drawer.classList.toggle('is-open', open);
+      burger.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-locked', open);
+      drawer.setAttribute('aria-hidden', String(!open));
+      burger.setAttribute('aria-expanded', String(open));
+    }
+    burger.addEventListener('click', () => setOpen(!drawer.classList.contains('is-open')));
+    // submenu accordion
+    drawer.querySelectorAll('.md-item > button.md-link').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('is-open');
+      });
+    });
+    // close drawer when clicking a real link
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+    // close on Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) setOpen(false);
+    });
+    // close when resizing back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 980 && drawer.classList.contains('is-open')) setOpen(false);
+    });
+  })();
+  </script>
+
+</body>
+</html>
