@@ -1349,6 +1349,31 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
     })();
+
+    // Slower, more cinematic scroll to #realisations
+    (function() {
+      const DURATION = 2200;
+      const easeInOutCubic = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+      const links = document.querySelectorAll('a[href$="#realisations"], a[href="#realisations"]');
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          const target = document.getElementById('realisations');
+          if (!target) return;
+          e.preventDefault();
+          const startY = window.scrollY;
+          const targetY = target.getBoundingClientRect().top + startY;
+          const distance = targetY - startY;
+          const startTime = performance.now();
+          const step = now => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / DURATION, 1);
+            window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      });
+    })();
   </script>
   <!-- ========================== /FOOTER ========================== -->
 
