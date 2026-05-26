@@ -340,8 +340,8 @@
   .duo-overlay {
     position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, rgba(10,13,24,0.4) 0%, rgba(10,13,24,0.55) 50%, rgba(12,17,50,0.85) 100%),
-      radial-gradient(ellipse at center, rgba(10,13,24,0.25) 0%, rgba(12,17,50,0.5) 100%);
+      linear-gradient(180deg, rgba(10,13,24,0.18) 0%, rgba(10,13,24,0.35) 60%, rgba(12,17,50,0.6) 100%),
+      radial-gradient(ellipse at center, rgba(10,13,24,0.15) 0%, rgba(12,17,50,0.35) 100%);
     transition: opacity .5s ease;
   }
   /* gold inner frame on hover */
@@ -412,15 +412,11 @@
     padding: 14px 24px;
     margin-top: 12px;
     text-decoration: none;
-    animation: ctaPulse 2.4s ease-in-out infinite;
     transition: background .35s ease, color .35s ease, border-color .35s ease, letter-spacing .35s ease;
   }
-  .duo-card:hover .duo-cta { background: var(--gold-1); color: var(--paris-deep); border-color: var(--gold-1); animation-play-state: paused; letter-spacing: 0.36em; }
+  .duo-card:hover .duo-cta { background: var(--gold-1); color: var(--paris-deep); border-color: var(--gold-1); letter-spacing: 0.36em; }
   .duo-cta .ar { transition: transform .35s cubic-bezier(.2,.7,.2,1); font-size: 16px; }
   .duo-card:hover .duo-cta .ar { transform: translateX(8px); }
-  @keyframes ctaPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(217,184,106,0.55); }
-    50%      { box-shadow: 0 0 0 10px rgba(217,184,106,0); }
   }
 
   /* ---------- Contact block ---------- */
