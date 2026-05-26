@@ -23,6 +23,22 @@
   html, body { min-height: 100%; }
   html {
     scroll-behavior: smooth;
+    scrollbar-color: #d9b86a #0c1132;
+    scrollbar-width: thin;
+  }
+  /* WebKit gold scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track {
+    background: #0c1132;
+    border-left: 1px solid rgba(217,184,106,0.18);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #f5d68a 0%, #d49d3e 50%, #f5d68a 100%);
+    border-radius: 999px;
+    border: 2px solid #0c1132;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #f9e0a0 0%, #e6b85f 50%, #f9e0a0 100%);
   }
   body {
     font-family: 'Jost', sans-serif;
@@ -455,14 +471,17 @@
     text-transform: none;
   }
   .scroll-cue {
-    display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
-    color: rgba(244,237,224,0.6);
+    display: inline-flex; flex-direction: column; align-items: center; gap: 12px;
+    color: var(--gold-1);
     text-decoration: none;
     cursor: pointer;
+    animation: cueFloat 2.6s ease-in-out infinite;
   }
   .scroll-cue:hover { color: var(--gold-soft); }
   .scroll-cue span {
-    font-size: 9px; letter-spacing: 0.4em;
+    font-size: 10px; letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.85;
   }
   .scroll-line {
     width: 1px; height: 60px;
@@ -475,9 +494,20 @@
     background: linear-gradient(to bottom, transparent, var(--ivory));
     animation: scrollPulse 2.6s cubic-bezier(.6,0,.4,1) infinite;
   }
+  .scroll-cue .scroll-chev {
+    width: 14px; height: 14px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: -6px;
+  }
   @keyframes scrollPulse {
     0% { top: -40%; }
     100% { top: 140%; }
+  }
+  @keyframes cueFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(6px); }
   }
 
   /* ---------- Header scrolled state ---------- */
@@ -888,6 +918,7 @@
       <a href="#realisations" class="scroll-cue" aria-label="Faire défiler">
         <span data-i18n="bottom.scroll">Scroll</span>
         <div class="scroll-line"></div>
+        <div class="scroll-chev" aria-hidden="true"></div>
       </a>
       <div></div>
     </div>
