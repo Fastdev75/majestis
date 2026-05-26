@@ -496,13 +496,6 @@
     background: linear-gradient(to bottom, transparent, var(--ivory));
     animation: scrollPulse 2.6s cubic-bezier(.6,0,.4,1) infinite;
   }
-  .scroll-cue .scroll-chev {
-    width: 14px; height: 14px;
-    border-right: 1px solid currentColor;
-    border-bottom: 1px solid currentColor;
-    transform: rotate(45deg);
-    margin-top: -6px;
-  }
   @keyframes scrollPulse {
     0% { top: -40%; }
     100% { top: 140%; }
@@ -920,7 +913,6 @@
       <a href="#realisations" class="scroll-cue" aria-label="Faire défiler">
         <span data-i18n="bottom.scroll">Scroll</span>
         <div class="scroll-line"></div>
-        <div class="scroll-chev" aria-hidden="true"></div>
       </a>
       <div></div>
     </div>
