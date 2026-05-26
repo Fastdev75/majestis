@@ -558,11 +558,13 @@
     gap: 28px;
     grid-template-areas:
       "big big"
-      "sm1 sm2";
+      "sm1 sm2"
+      "wide wide";
   }
-  .real-card--big { grid-area: big; }
+  .real-card--big  { grid-area: big; }
   .real-card--sm:nth-of-type(2) { grid-area: sm1; }
   .real-card--sm:nth-of-type(3) { grid-area: sm2; }
+  .real-card--wide { grid-area: wide; aspect-ratio: 21/9; min-height: clamp(320px, 28vw, 600px); }
 
   .real-card {
     position: relative;
@@ -660,8 +662,9 @@
   @media (max-width: 920px) {
     .real-grid {
       grid-template-columns: 1fr;
-      grid-template-areas: "big" "sm1" "sm2";
+      grid-template-areas: "big" "sm1" "sm2" "wide";
     }
+    .real-card--wide { aspect-ratio: 4/3; min-height: clamp(280px, 60vw, 480px); }
     .realisations { padding: 100px 24px 120px; }
     .section-head { margin-bottom: 48px; }
   }
@@ -934,6 +937,23 @@
             </span>
           </div>
         </a>
+
+        <!-- Wide card: Espaces & Structures -->
+        <a href="Espaces et Structures.html" class="real-card real-card--wide" data-cat="space">
+          <div class="real-img" style="background-image:url('assets/dorures-meriguet-01.png');"></div>
+          <div class="real-overlay"></div>
+          <div class="real-meta">
+            <span class="real-tag" data-i18n="real.space.tag">Architecture intérieure</span>
+            <h3 class="real-name">
+              <span data-i18n="real.space.t1">Espaces</span>
+              <em data-i18n="real.space.t2">&amp; Structures</em>
+            </h3>
+            <span class="real-cta">
+              <span data-i18n="real.discover">Découvrir la collection</span>
+              <span class="ar">→</span>
+            </span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -981,6 +1001,9 @@
         "real.pro.tag": "Professionnel",
         "real.pro.t1": "Espaces Pro",
         "real.pro.t2": "Réinventés",
+        "real.space.tag": "Architecture intérieure",
+        "real.space.t1": "Espaces",
+        "real.space.t2": "& Structures",
         "header.appointment": "Prendre rendez-vous",
         "hero.eyebrow": "Maison d'Architecture — Paris",
         "hero.t1": "Majestis",
@@ -1033,6 +1056,9 @@
         "real.pro.tag": "Professional",
         "real.pro.t1": "Workspaces",
         "real.pro.t2": "Reinvented",
+        "real.space.tag": "Interior architecture",
+        "real.space.t1": "Spaces",
+        "real.space.t2": "& Structures",
         "header.appointment": "Book an appointment",
         "hero.eyebrow": "House of Architecture — Paris",
         "hero.t1": "Majestis",
