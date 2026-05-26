@@ -241,6 +241,20 @@
     0%,100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+  .page-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 1.8vw, 26px);
+    letter-spacing: 0.04em;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 12s ease-in-out infinite;
+    margin-top: -6px;
+    filter: drop-shadow(0 0 18px rgba(212,157,62,0.25));
+  }
   .page-rule {
     display: block; width: 1px; height: 56px;
     background: linear-gradient(to bottom, transparent, var(--gold-1));
@@ -573,6 +587,7 @@
       <span data-i18n="title.t1">L'Art des</span>
       <em data-i18n="title.t2">Métiers</em>
     </h1>
+    <p class="page-subtitle" data-i18n="title.sub">L'Art des Métiers</p>
     <span class="page-rule" aria-hidden="true"></span>
   </section>
 
@@ -681,6 +696,7 @@
         "nav.contact.client": "Parler de notre projet", "nav.contact.join": "Nous rejoindre",
         "bc.home": "Accueil", "bc.here": "L'Art des Métiers",
         "title.t1": "L'Art des", "title.t2": "Métiers",
+        "title.sub": "L'Art des Métiers",
         "back": "Retour",
         "intro.title": "Le saviez-vous… ?",
         "intro.body": "Des moulures aux ferronneries, des hauteurs sous plafond aux immenses fenêtres, chaque détail haussmannien répond à une intention précise. Derrière chaque matière se cache le savoir-faire des artisans qui ont façonné l'élégance parisienne.",
@@ -712,6 +728,7 @@
         "nav.contact.client": "Talk about your project", "nav.contact.join": "Join us",
         "bc.home": "Home", "bc.here": "The Crafts",
         "title.t1": "The Art of", "title.t2": "Crafts",
+        "title.sub": "The Art of Crafts",
         "back": "Back",
         "intro.title": "Did you know… ?",
         "intro.body": "From mouldings to ironwork, from ceiling heights to vast windows, every Haussmannian detail answers a precise intent. Behind every material lies the savoir-faire of artisans who shaped Parisian elegance.",
