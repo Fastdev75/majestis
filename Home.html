@@ -565,12 +565,13 @@
     grid-template-areas:
       "big big"
       "sm1 sm2"
-      "wide wide";
+      "sm3 sm4";
   }
-  .real-card--big  { grid-area: big; }
+  .real-card--big { grid-area: big; }
   .real-card--sm:nth-of-type(2) { grid-area: sm1; }
   .real-card--sm:nth-of-type(3) { grid-area: sm2; }
-  .real-card--wide { grid-area: wide; aspect-ratio: 21/9; min-height: clamp(320px, 28vw, 600px); }
+  .real-card--sm:nth-of-type(4) { grid-area: sm3; }
+  .real-card--sm:nth-of-type(5) { grid-area: sm4; }
 
   .real-card {
     position: relative;
@@ -673,9 +674,8 @@
   @media (max-width: 920px) {
     .real-grid {
       grid-template-columns: 1fr;
-      grid-template-areas: "big" "sm1" "sm2" "wide";
+      grid-template-areas: "big" "sm1" "sm2" "sm3" "sm4";
     }
-    .real-card--wide { aspect-ratio: 4/3; min-height: clamp(280px, 60vw, 480px); }
     .realisations { padding: 100px 24px 120px; }
     .section-head { margin-bottom: 48px; }
   }
@@ -952,15 +952,32 @@
           </div>
         </a>
 
-        <!-- Wide card: Espaces & Structures -->
-        <a href="Espaces et Structures.html" class="real-card real-card--wide" data-cat="space">
-          <div class="real-img" style="background-image:url('assets/dorures-meriguet-01.png');"></div>
+        <!-- Structure & Aménagement -->
+        <a href="Structure et Amenagement.html" class="real-card real-card--sm" data-cat="struct">
+          <div class="real-img" style="background-image:url('assets/escaliers-05.png');"></div>
           <div class="real-overlay"></div>
           <div class="real-meta">
-            <span class="real-tag" data-i18n="real.space.tag">Architecture intérieure</span>
+            <span class="real-tag" data-i18n="real.struct.tag">Architecture</span>
             <h3 class="real-name">
-              <span data-i18n="real.space.t1">Espaces</span>
-              <em data-i18n="real.space.t2">&amp; Structures</em>
+              <span data-i18n="real.struct.t1">Structure</span>
+              <em data-i18n="real.struct.t2">&amp; Aménagement</em>
+            </h3>
+            <span class="real-cta">
+              <span data-i18n="real.discover">Explorer</span>
+              <span class="ar">→</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Décoration & Finition -->
+        <a href="Decoration et Finition.html" class="real-card real-card--sm" data-cat="deco">
+          <div class="real-img" style="background-image:url('assets/dorures-meriguet-04.png');"></div>
+          <div class="real-overlay"></div>
+          <div class="real-meta">
+            <span class="real-tag" data-i18n="real.deco.tag">Arts décoratifs</span>
+            <h3 class="real-name">
+              <span data-i18n="real.deco.t1">Décoration</span>
+              <em data-i18n="real.deco.t2">&amp; Finition</em>
             </h3>
             <span class="real-cta">
               <span data-i18n="real.discover">Explorer</span>
@@ -1016,9 +1033,12 @@
         "real.pro.tag": "Professionnel",
         "real.pro.t1": "Espaces Pro",
         "real.pro.t2": "Réinventés",
-        "real.space.tag": "Architecture intérieure",
-        "real.space.t1": "Espaces",
-        "real.space.t2": "& Structures",
+        "real.struct.tag": "Architecture",
+        "real.struct.t1": "Structure",
+        "real.struct.t2": "& Aménagement",
+        "real.deco.tag": "Arts décoratifs",
+        "real.deco.t1": "Décoration",
+        "real.deco.t2": "& Finition",
         "header.appointment": "Prendre rendez-vous",
         "hero.eyebrow": "Maison d'Architecture — Paris",
         "hero.t1": "Majestis",
@@ -1072,9 +1092,12 @@
         "real.pro.tag": "Professional",
         "real.pro.t1": "Workspaces",
         "real.pro.t2": "Reinvented",
-        "real.space.tag": "Interior architecture",
-        "real.space.t1": "Spaces",
-        "real.space.t2": "& Structures",
+        "real.struct.tag": "Architecture",
+        "real.struct.t1": "Structure",
+        "real.struct.t2": "& Layout",
+        "real.deco.tag": "Decorative arts",
+        "real.deco.t1": "Decoration",
+        "real.deco.t2": "& Finish",
         "header.appointment": "Book an appointment",
         "hero.eyebrow": "House of Architecture — Paris",
         "hero.t1": "Majestis",
