@@ -275,10 +275,10 @@
     overflow: hidden;
     background: rgba(217,184,106,0.04);
   }
-  /* Landscape variant — adapts to source images natively (no upscaling blur) */
+  /* Portrait variant — matches native source orientation to avoid crop+upscale blur */
   .real-carousel.is-landscape {
-    aspect-ratio: 5/4;
-    max-width: 500px;
+    aspect-ratio: 5/7;
+    max-width: 280px;
     margin: 0 auto;
   }
   .real-carousel .slide {
@@ -287,7 +287,6 @@
     background-position: center;
     opacity: 0;
     transition: opacity 1.2s ease;
-    image-rendering: -webkit-optimize-contrast;
   }
   .real-carousel .slide.is-active { opacity: 1; }
   .real-carousel .dots {

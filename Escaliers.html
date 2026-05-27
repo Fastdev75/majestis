@@ -281,13 +281,24 @@
     max-width: 500px;
     margin: 0 auto;
   }
+  /* Last 4 articles use smaller source images (106-223 px wide).
+     Shrink containers and match each native orientation to avoid crop+upscale blur. */
+  .reals .real:nth-of-type(9) .real-carousel.is-landscape,
+  .reals .real:nth-of-type(10) .real-carousel.is-landscape {
+    aspect-ratio: 5/7;
+    max-width: 240px;
+  }
+  .reals .real:nth-of-type(11) .real-carousel.is-landscape,
+  .reals .real:nth-of-type(12) .real-carousel.is-landscape {
+    aspect-ratio: 5/4;
+    max-width: 280px;
+  }
   .real-carousel .slide {
     position: absolute; inset: 0;
     background-size: cover;
     background-position: center;
     opacity: 0;
     transition: opacity 1.2s ease;
-    image-rendering: -webkit-optimize-contrast;
   }
   .real-carousel .slide.is-active { opacity: 1; }
   .real-carousel .dots {
