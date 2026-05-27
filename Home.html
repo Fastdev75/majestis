@@ -695,15 +695,24 @@
   .real-card:hover .real-cta { background: var(--gold-1); color: var(--paris-deep); border-color: var(--gold-1); letter-spacing: 0.36em; }
   .real-cta .ar { transition: transform .35s cubic-bezier(.2,.7,.2,1); font-size: 16px; }
   .real-card:hover .real-cta .ar { transform: translateX(8px); }
-  }
 
   @media (max-width: 920px) {
+    .realisations {
+      min-height: 0;
+      display: block;
+      padding: 80px 18px 90px;
+    }
     .real-grid {
       grid-template-columns: 1fr;
       grid-template-areas: "big" "sm1" "sm2" "sm3" "sm4";
+      gap: 18px;
     }
-    .realisations { padding: 100px 24px 120px; }
-    .section-head { margin-bottom: 48px; }
+    .real-card--big { aspect-ratio: 4/3; min-height: 240px; }
+    .real-card--sm  { aspect-ratio: 4/3; min-height: 220px; }
+    .real-meta { padding: 22px 24px; }
+    .section-head { margin-bottom: 40px; }
+    .section-title { font-size: clamp(38px, 9vw, 56px); }
+    .section-sub { font-size: 15px; padding: 0 6px; }
   }
 
   /* corner ornaments */
@@ -1013,7 +1022,7 @@
 
         <!-- Décoration & Finition -->
         <a href="Decoration et Finition.html" class="real-card real-card--sm" data-cat="deco">
-          <div class="real-img" style="background-image:url('assets/dorures-meriguet-04.png');"></div>
+          <div class="real-img" style="background-image:url('uploads/new_deco_finition.png');"></div>
           <div class="real-overlay"></div>
           <div class="real-meta">
             <span class="real-tag" data-i18n="real.deco.tag">Arts décoratifs</span>
