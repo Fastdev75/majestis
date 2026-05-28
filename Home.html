@@ -1372,9 +1372,9 @@
       onScroll();
     })();
 
-    // Slower, more cinematic scroll to #realisations
+    // Smooth but snappy scroll to #realisations
     (function() {
-      const DURATION = 2200;
+      const DURATION = 700;
       const easeInOutCubic = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
       const links = document.querySelectorAll('a[href$="#realisations"], a[href="#realisations"]');
       links.forEach(link => {
