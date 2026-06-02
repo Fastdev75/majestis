@@ -516,7 +516,22 @@
           <span data-i18n="nav.home">Accueil</span>
         </a>
       </div>
-      <!-- Nos Réalisations -->
+
+      <div class="nav-item">
+        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <span data-i18n="nav.group">Le Groupe</span>
+          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-eyebrow" data-i18n="nav.group.eyebrow">La Maison</div>
+          <ul>
+            <li><a href="Portrait.html"><span class="dot"></span><span data-i18n="nav.group.portrait">Portrait</span><span class="arrow">&#8594;</span></a></li>
+            <li><a href="Histoire.html"><span class="dot"></span><span data-i18n="nav.group.histoire">Histoire</span><span class="arrow">&#8594;</span></a></li>
+            <li><a href="Valeurs.html"><span class="dot"></span><span data-i18n="nav.group.valeurs">Valeurs</span><span class="arrow">&#8594;</span></a></li>
+          </ul>
+        </div>
+      </div>
+
       <div class="nav-item">
         <a class="nav-link" href="Home.html#realisations">
           <span data-i18n="nav.real">Nos Réalisations</span>
@@ -524,15 +539,12 @@
       </div>
 
       <div class="nav-item">
-        <a class="nav-link" href="Le Groupe.html">
-          <span data-i18n="nav.group">Le Groupe</span>
-        </a>
-      </div>
-      <div class="nav-item">
         <a class="nav-link" href="Art des Metiers.html">
           <span data-i18n="nav.art">L'Art des Métiers</span>
         </a>
-      </div>      <div class="nav-item">
+      </div>
+
+      <div class="nav-item">
         <button class="nav-link" aria-haspopup="true" aria-expanded="false">
           <span data-i18n="nav.contact">Nous contacter</span>
           <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
@@ -540,8 +552,8 @@
         <div class="dropdown" role="menu">
           <div class="dropdown-eyebrow" data-i18n="nav.contact.eyebrow">Entrer en relation</div>
           <ul>
-            <li><a href="Contact.html"><span class="dot"></span><span data-i18n="nav.contact.client">Parler de notre projet</span><span class="arrow">→</span></a></li>
-            <li><a href="Nous Rejoindre.html"><span class="dot"></span><span data-i18n="nav.contact.join">Nous rejoindre</span><span class="arrow">→</span></a></li>
+            <li><a href="Contact.html"><span class="dot"></span><span data-i18n="nav.contact.client">Parler de notre projet</span><span class="arrow">&#8594;</span></a></li>
+            <li><a href="Nous Rejoindre.html"><span class="dot"></span><span data-i18n="nav.contact.join">Nous rejoindre</span><span class="arrow">&#8594;</span></a></li>
           </ul>
         </div>
       </div>
@@ -616,6 +628,23 @@
       </div>
     </article>
 
+    <!-- 4. Parquet — Galerie des Glaces, Château de Versailles -->
+    <article class="real reverse">
+      <div class="real-carousel is-landscape" data-autoplay="0">
+        <div class="slide is-active" style="background-image:url('assets/hero-versailles-galerie-glaces.jpg');"></div>
+      </div>
+      <div class="real-text">
+        <h2 class="real-title">
+          <span data-i18n="r4.t1">Galerie des Glaces —</span>
+          <em data-i18n="r4.t2">parquet de Versailles</em>
+        </h2>
+        <div class="real-body">
+          <p data-i18n="r4.p1">Restauration du parquet d'apparat de la Galerie des Glaces, au Château de Versailles, panneaux de chêne massif en parquet de Versailles posés selon le calepinage historique.</p>
+          <p data-i18n="r4.p2">Ponçage doux, ajustage des lames d'origine et finition cirée à l'ancienne pour révéler la patine du bois et restituer la lumière du lieu.</p>
+        </div>
+      </div>
+    </article>
+
   </section>
 
   <script>
@@ -655,7 +684,7 @@
     // ---------- i18n ----------
     const I18N = {
       fr: {
-        "nav.home": "Accueil", "nav.group": "Le Groupe", "nav.art": "L'Art des Métiers",
+        "nav.home": "Accueil", "nav.group": "Le Groupe", "nav.group.portrait": "Portrait", "nav.group.histoire": "Histoire", "nav.group.valeurs": "Valeurs", "nav.art": "L'Art des Métiers",
         "nav.real": "Nos Réalisations",
         "nav.space": "Espaces & Structures", "nav.space.eyebrow": "Architecture intérieure",
         "nav.space.peintures": "Peintures", "nav.space.moulures": "Moulures", "nav.space.dorure": "Dorure",
@@ -673,10 +702,14 @@
         "r3.t1": "Plancher en",
         "r3.t2": "chevrons de chêne",
         "r3.p1": "Restauration d'un plancher d'apparat dans la Galerie des Batailles, au Château de Versailles, chevrons de chêne massif posés à l'identique, séchage long et finition à l'huile dure pour restituer la patine d'origine. Chaque lame est taillée au gabarit historique.",
+        "r4.t1": "Galerie des Glaces —",
+        "r4.t2": "parquet de Versailles",
+        "r4.p1": "Restauration du parquet d'apparat de la Galerie des Glaces, au Château de Versailles, panneaux de chêne massif en parquet de Versailles posés selon le calepinage historique.",
+        "r4.p2": "Ponçage doux, ajustage des lames d'origine et finition cirée à l'ancienne pour révéler la patine du bois et restituer la lumière du lieu.",
         "back": "Retour"
       },
       en: {
-        "nav.home": "Home", "nav.group": "The House", "nav.art": "The Crafts",
+        "nav.home": "Home", "nav.group": "The House", "nav.group.portrait": "Portrait", "nav.group.histoire": "Story", "nav.group.valeurs": "Values", "nav.art": "The Crafts",
         "nav.real": "Our Realizations",
         "nav.space": "Spaces & Structures", "nav.space.eyebrow": "Interior architecture",
         "nav.space.peintures": "Paintings", "nav.space.moulures": "Mouldings", "nav.space.dorure": "Gilding",
@@ -694,6 +727,10 @@
         "r3.t1": "Floor in",
         "r3.t2": "oak chevrons",
         "r3.p1": "Restoration of a ceremonial floor in the Galerie des Batailles, Château de Versailles, solid oak chevrons laid identically, long seasoning and hard-oil finish to restore the original patina. Each board is cut to the historical template.",
+        "r4.t1": "Hall of Mirrors —",
+        "r4.t2": "Versailles parquet",
+        "r4.p1": "Restoration of the ceremonial floor of the Hall of Mirrors, Château de Versailles, solid-oak Versailles parquet panels laid according to the historical layout.",
+        "r4.p2": "Gentle sanding, fitting of the original boards and traditional waxed finish to reveal the patina of the wood and restore the light of the room.",
         "back": "Back"
       }
     };
@@ -748,8 +785,15 @@
     </div>
     <ul>
       <li class="md-item"><a class="md-link" href="Home.html"><span data-i18n="nav.home">Accueil</span></a></li>
+      <li class="md-item">
+        <button class="md-link" type="button"><span data-i18n="nav.group">Le Groupe</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>
+        <ul class="md-sub">
+          <li><a href="Portrait.html"><span data-i18n="nav.group.portrait">Portrait</span></a></li>
+          <li><a href="Histoire.html"><span data-i18n="nav.group.histoire">Histoire</span></a></li>
+          <li><a href="Valeurs.html"><span data-i18n="nav.group.valeurs">Valeurs</span></a></li>
+        </ul>
+      </li>
       <li class="md-item"><a class="md-link" href="Home.html#realisations"><span data-i18n="nav.real">Nos Réalisations</span></a></li>
-      <li class="md-item"><a class="md-link" href="Le Groupe.html"><span data-i18n="nav.group">Le Groupe</span></a></li>
       <li class="md-item"><a class="md-link" href="Art des Metiers.html"><span data-i18n="nav.art">L'Art des Métiers</span></a></li>
       <li class="md-item">
         <button class="md-link" type="button"><span data-i18n="nav.contact">Nous contacter</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>

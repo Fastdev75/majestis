@@ -548,7 +548,21 @@
         </a>
       </div>
 
-      <!-- Nos Réalisations -->
+      <div class="nav-item">
+        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <span data-i18n="nav.group">Le Groupe</span>
+          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-eyebrow" data-i18n="nav.group.eyebrow">La Maison</div>
+          <ul>
+            <li><a href="Portrait.html"><span class="dot"></span><span data-i18n="nav.group.portrait">Portrait</span><span class="arrow">&#8594;</span></a></li>
+            <li><a href="Histoire.html"><span class="dot"></span><span data-i18n="nav.group.histoire">Histoire</span><span class="arrow">&#8594;</span></a></li>
+            <li><a href="Valeurs.html"><span class="dot"></span><span data-i18n="nav.group.valeurs">Valeurs</span><span class="arrow">&#8594;</span></a></li>
+          </ul>
+        </div>
+      </div>
+
       <div class="nav-item">
         <a class="nav-link" href="Home.html#realisations">
           <span data-i18n="nav.real">Nos Réalisations</span>
@@ -556,16 +570,12 @@
       </div>
 
       <div class="nav-item">
-        <a class="nav-link" href="Le Groupe.html">
-          <span data-i18n="nav.group">Le Groupe</span>
+        <a class="nav-link" href="Art des Metiers.html">
+          <span data-i18n="nav.art">L'Art des Métiers</span>
         </a>
       </div>
 
       <div class="nav-item">
-        <a class="nav-link" href="Art des Metiers.html">
-          <span data-i18n="nav.art">L'Art des Métiers</span>
-        </a>
-      </div>      <div class="nav-item">
         <button class="nav-link" aria-haspopup="true" aria-expanded="false">
           <span data-i18n="nav.contact">Nous contacter</span>
           <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
@@ -573,8 +583,8 @@
         <div class="dropdown" role="menu">
           <div class="dropdown-eyebrow" data-i18n="nav.contact.eyebrow">Entrer en relation</div>
           <ul>
-            <li><a href="Contact.html"><span class="dot"></span><span data-i18n="nav.contact.client">Parler de notre projet</span><span class="arrow">→</span></a></li>
-            <li><a href="Nous Rejoindre.html"><span class="dot"></span><span data-i18n="nav.contact.join">Nous rejoindre</span><span class="arrow">→</span></a></li>
+            <li><a href="Contact.html"><span class="dot"></span><span data-i18n="nav.contact.client">Parler de notre projet</span><span class="arrow">&#8594;</span></a></li>
+            <li><a href="Nous Rejoindre.html"><span class="dot"></span><span data-i18n="nav.contact.join">Nous rejoindre</span><span class="arrow">&#8594;</span></a></li>
           </ul>
         </div>
       </div>
@@ -642,7 +652,7 @@
     const I18N = {
       fr: {
         "nav.home": "Accueil",
-        "nav.group": "Le Groupe", "nav.group.eyebrow": "La Maison",
+        "nav.group": "Le Groupe", "nav.group.portrait": "Portrait", "nav.group.histoire": "Histoire", "nav.group.valeurs": "Valeurs", "nav.group.eyebrow": "La Maison",
         "nav.group.story": "Notre histoire", "nav.group.values": "Nos valeurs",
         "nav.art": "L'Art des Métiers",
         "nav.real": "Nos Réalisations", "nav.art.eyebrow": "Matières & savoir-faire",
@@ -668,7 +678,7 @@
       },
       en: {
         "nav.home": "Home",
-        "nav.group": "The House", "nav.group.eyebrow": "The Maison",
+        "nav.group": "The House", "nav.group.portrait": "Portrait", "nav.group.histoire": "Story", "nav.group.valeurs": "Values", "nav.group.eyebrow": "The Maison",
         "nav.group.story": "Our story", "nav.group.values": "Our values",
         "nav.art": "The Crafts",
         "nav.real": "Our Realizations", "nav.art.eyebrow": "Materials & savoir-faire",
@@ -749,8 +759,15 @@
     </div>
     <ul>
       <li class="md-item"><a class="md-link" href="Home.html"><span data-i18n="nav.home">Accueil</span></a></li>
+      <li class="md-item">
+        <button class="md-link" type="button"><span data-i18n="nav.group">Le Groupe</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>
+        <ul class="md-sub">
+          <li><a href="Portrait.html"><span data-i18n="nav.group.portrait">Portrait</span></a></li>
+          <li><a href="Histoire.html"><span data-i18n="nav.group.histoire">Histoire</span></a></li>
+          <li><a href="Valeurs.html"><span data-i18n="nav.group.valeurs">Valeurs</span></a></li>
+        </ul>
+      </li>
       <li class="md-item"><a class="md-link" href="Home.html#realisations"><span data-i18n="nav.real">Nos Réalisations</span></a></li>
-      <li class="md-item"><a class="md-link" href="Le Groupe.html"><span data-i18n="nav.group">Le Groupe</span></a></li>
       <li class="md-item"><a class="md-link" href="Art des Metiers.html"><span data-i18n="nav.art">L'Art des Métiers</span></a></li>
       <li class="md-item">
         <button class="md-link" type="button"><span data-i18n="nav.contact">Nous contacter</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>

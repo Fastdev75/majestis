@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Majestis — Fenêtres</title>
+<title>Majestis — Portraits</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -48,6 +48,7 @@
   .corner.tl { top: 18px; left: 18px; }
   .corner.tr { top: 18px; right: 18px; transform: scaleX(-1); }
 
+  /* Back arrow (gold, fixed) */
   .back-link {
     position: absolute; top: 122px; left: 36px; z-index: 30;
     display: inline-flex; align-items: center; gap: 14px;
@@ -113,14 +114,13 @@
     font-family: 'Jost', sans-serif; font-weight: 400;
     font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
     color: rgba(244,237,224,0.9);
-    background: none; border: 0; cursor: pointer;
+    background: none; border: 0; cursor: pointer; text-decoration: none;
     padding: 10px 16px;
     transition: color .25s ease;
     white-space: nowrap; text-decoration: none;
   }
   .nav-link .chev { width: 9px; height: 9px; opacity: 0.55; transition: opacity .25s ease; }
-  .nav-item:hover .nav-link,
-  .nav-item:focus-within .nav-link { color: var(--gold-soft); }
+  .nav-item:hover .nav-link { color: var(--gold-soft); border-color: var(--gold-1); }
   .nav-item:hover .nav-link .chev { opacity: 1; }
 
   .dropdown {
@@ -247,145 +247,270 @@
     margin: 36px auto 0;
   }
 
-  /* ---------- Réalisations ---------- */
-  .reals {
+  /* ---------- NOUS section ---------- */
+  .nous {
     position: relative; z-index: 1;
-    padding: 60px 56px 140px;
-    max-width: 1400px;
+    padding: 30px 56px 120px;
+    max-width: 1480px;
     margin: 0 auto;
   }
-  .real {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(40px, 6vw, 96px);
-    align-items: center;
-    padding: 70px 0;
+  .nous-head {
+    text-align: center;
+    margin-bottom: 64px;
   }
-  .real + .real {
-    border-top: 1px solid rgba(217,184,106,0.18);
+  .nous-eyebrow {
+    display: inline-flex; align-items: center; gap: 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-1);
   }
-  .real.reverse .real-carousel { order: 2; }
-  .real.reverse .real-text { order: 1; }
+  .nous-eyebrow::before, .nous-eyebrow::after {
+    content: ""; width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-1), transparent);
+  }
+  .nous-eyebrow em {
+    font-style: normal;
+    font-size: 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    background: var(--gold-gradient);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    background-size: 220% 100%;
+    animation: shimmer 12s ease-in-out infinite;
+  }
+  .nous-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(17px, 1.3vw, 21px);
+    color: rgba(244,237,224,0.72);
+    max-width: 640px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+    text-wrap: balance;
+  }
 
-  /* Carousel */
-  .real-carousel {
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+  .member {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .member-photo {
     position: relative;
     width: 100%;
     aspect-ratio: 4/5;
     overflow: hidden;
-    background: rgba(217,184,106,0.04);
+    background: rgba(217,184,106,0.05);
+    border: 1px solid rgba(217,184,106,0.18);
+    isolation: isolate;
   }
-  /* Portrait variant — matches native source orientation to avoid crop+upscale blur */
-  .real-carousel.is-landscape {
-    aspect-ratio: 5/7;
-    max-width: 280px;
-    margin: 0 auto;
+  .member-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(12,17,50,0) 60%, rgba(12,17,50,0.45) 100%);
+    pointer-events: none;
   }
-  .real-carousel .slide {
+  .member-photo .img {
     position: absolute; inset: 0;
     background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.2s ease;
+    background-position: center top;
+    filter: grayscale(100%) contrast(1.04);
+    transition: filter 1s ease, transform 1.4s cubic-bezier(.2,.7,.2,1);
   }
-  .real-carousel .slide.is-active { opacity: 1; }
-  .real-carousel .dots {
-    position: absolute;
-    bottom: 18px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; gap: 10px;
-    z-index: 4;
+  .member:hover .member-photo .img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.04);
   }
-  .real-carousel .dots button {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: rgba(217,184,106,0.35);
-    border: 0;
-    cursor: pointer;
-    padding: 0;
-    transition: background .3s ease, transform .3s ease;
+  /* gold frame on hover */
+  .member-photo .frame {
+    position: absolute; inset: 14px;
+    border: 1px solid rgba(217,184,106,0);
+    pointer-events: none; z-index: 2;
+    transition: border-color .5s ease, inset .5s ease;
   }
-  .real-carousel .dots button.is-active {
-    background: var(--gold-1);
-    transform: scale(1.3);
+  .member:hover .member-photo .frame {
+    border-color: rgba(217,184,106,0.55);
+    inset: 18px;
   }
 
-  .real-text { display: flex; flex-direction: column; }
-  .real-tag {
-    font-family: 'Jost', sans-serif;
-    font-size: 10.5px;
-    letter-spacing: 0.42em;
-    text-transform: uppercase;
-    color: var(--gold-1);
-    margin-bottom: 18px;
-    display: inline-flex; align-items: center; gap: 12px;
+  .member-info {
+    padding-top: 22px;
+    display: flex; flex-direction: column;
+    align-items: center;
   }
-  .real-title {
+  .member-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(22px, 1.9vw, 32px);
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+  .member-name .last {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-left: 8px;
+    filter: drop-shadow(0 0 14px rgba(212,157,62,0.25));
+  }
+  .member-desc {
+    margin-top: 18px;
+    padding: 0 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 1.7vw, 28px);
+    line-height: 1.55;
+    color: rgba(244,237,224,0.95);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 980px) {
+    body > header { padding: 12px 20px 0; gap: 14px; }
+    nav.primary { display: none; }
+    .brand-logo { width: 64px; height: 64px; }
+    .back-link { top: 96px; left: 18px; font-size: 9.5px; letter-spacing: 0.3em; }
+    .page-hero { padding: 160px 24px 30px; }
+    .nous { padding: 20px 24px 90px; }
+    .team-grid { grid-template-columns: 1fr; gap: 40px; }
+    .histoire { padding: 60px 24px 120px; }
+  }
+
+  /* ---------- Notre Histoire / Nos Valeurs ---------- */
+  .histoire {
+    position: relative; z-index: 1;
+    padding: 60px 56px 100px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .essay {
+    display: block;
+    padding: 60px 0;
+  }
+  .essay + .essay {
+    border-top: 1px solid rgba(217,184,106,0.18);
+    padding-top: 60px;
+  }
+  .essay.reverse { text-align: right; }
+  .essay:not(.reverse) { text-align: left; }
+
+  .essay-title-block {
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .essay.reverse .essay-title-block { align-items: flex-end; }
+
+  .essay-title {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: clamp(32px, 3.2vw, 48px);
-    line-height: 1.1;
+    font-size: clamp(28px, 2.6vw, 40px);
+    line-height: 1;
+    letter-spacing: 0.01em;
     color: var(--ivory);
-    margin-bottom: 26px;
-    text-wrap: balance;
   }
-  .real-title em {
-    font-style: italic;
-    font-weight: 500;
+  .essay-title em {
+    font-style: italic; font-weight: 500;
     background: var(--gold-gradient);
     background-size: 220% 100%;
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
     animation: shimmer 12s ease-in-out infinite;
     filter: drop-shadow(0 0 18px rgba(212,157,62,0.3));
+    margin-right: 8px;
   }
-  .real-body {
+  .essay-rule {
+    width: 44px; height: 1px;
+    background: var(--gold-1);
+    margin-top: 18px;
+  }
+
+  .essay-quote {
+    position: relative;
+    padding: 0;
+    max-width: 880px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .essay.reverse .essay-quote { margin-left: auto; }
+  .essay-quote .qmark {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(48px, 4.4vw, 64px);
+    line-height: 1;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+    padding: 0 8px;
+    height: 0.7em;
+    overflow: visible;
+  }
+  .essay-quote .qmark.open {
+    align-self: flex-start;
+    margin-bottom: 14px;
+  }
+  .essay-quote .qmark.close {
+    align-self: flex-end;
+    margin-top: 14px;
+  }
+  .essay-quote.brackets .qmark { font-style: normal; }
+  .essay-quote.brackets .qmark.open { top: -10px; left: -6px; }
+  .essay-quote.brackets .qmark.close { bottom: -34px; right: -6px; }
+
+  .essay-text + .essay-text { margin-top: 1em; }
+  .essay-text {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(20px, 1.55vw, 26px);
+    font-size: clamp(20px, 1.7vw, 28px);
     line-height: 1.65;
-    color: rgba(244,237,224,0.92);
+    color: rgba(244,237,224,0.9);
     text-wrap: pretty;
   }
-  .real-body p + p { margin-top: 1em; }
-  .real-list {
-    list-style: none;
-    margin-top: 0.5em;
-    padding: 0;
-  }
-  .real-list li {
+  .essay.reverse .essay-text { text-align: right; }
+  .essay-text .firstcap {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-weight: 400;
-    font-size: clamp(19px, 1.45vw, 24px);
-    line-height: 1.55;
-    color: rgba(244,237,224,0.9);
-    padding: 5px 0 5px 24px;
-    position: relative;
-  }
-  .real-list li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0.9em;
-    width: 14px; height: 1px;
-    background: var(--gold-1);
+    font-weight: 500;
+    font-size: 1.4em;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    padding-right: 2px;
+    filter: drop-shadow(0 0 14px rgba(212,157,62,0.3));
   }
 
   @media (max-width: 900px) {
-    body > header { padding: 12px 20px 0; gap: 14px; }
-    nav.primary { display: none; }
-    .brand-logo { width: 64px; height: 64px; }
-    .back-link { top: 96px; left: 18px; font-size: 9.5px; letter-spacing: 0.3em; }
-    .page-hero { padding: 160px 24px 30px; }
-    .reals { padding: 20px 24px 100px; }
-    .real, .real.reverse {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      padding: 50px 0;
-    }
-    .real.reverse .real-carousel { order: 1; }
-    .real.reverse .real-text { order: 2; }
+    .histoire { padding: 40px 24px 90px; }
+    .essay, .essay.reverse { text-align: left; padding: 36px 0; }
+    .essay.reverse .essay-title-block { align-items: flex-start; }
+    .essay.reverse .essay-quote { margin-left: 0; }
+    .essay.reverse .essay-text { text-align: left; }
+    .essay-quote { padding: 8px 40px; }
+    .essay + .essay .essay-title-block,
+    .essay + .essay .essay-quote { margin-left: 0; }
   }
 
 
@@ -569,189 +694,113 @@
   <!-- Page hero -->
   <section class="page-hero">
     <h1 class="page-title">
-      <em data-i18n="title.t1">Fenêtres</em>
+      <span data-i18n="title.t1">Nos</span>
+      <em data-i18n="title.t2">Portraits</em>
     </h1>
     <span class="page-rule" aria-hidden="true"></span>
   </section>
 
-  <!-- Réalisations -->
-  <section class="reals">
-
-    <!-- 1. Fenêtre Renaissance — Bois sculpté -->
-    <article class="real">
-      <div class="real-carousel is-landscape" data-autoplay="0">
-        <div class="slide is-active" style="background-image:url('assets/fenetres-01.png');"></div>
-      </div>
-      <div class="real-text">
-        <h2 class="real-title">
-          <span data-i18n="r1.t1">Fenêtre Renaissance —</span>
-          <em data-i18n="r1.t2">Bois sculpté</em>
-        </h2>
-        <div class="real-body">
-          <p data-i18n="r1.p1">Restauration d'une fenêtre à meneaux de la Renaissance, montants sculptés, vitrage en losange au plomb et reprise des décors selon les techniques d'origine.</p>
+  <!-- NOUS -->
+  <section class="nous">
+    <div class="team-grid">
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-benoit.png');"></div>
+          <div class="frame"></div>
         </div>
-      </div>
-    </article>
-
-    <!-- 2. Fenêtre cintrée — Style classique -->
-    <article class="real reverse">
-      <div class="real-carousel is-landscape" data-autoplay="0">
-        <div class="slide is-active" style="background-image:url('assets/fenetres-02.png');"></div>
-      </div>
-      <div class="real-text">
-        <h2 class="real-title">
-          <span data-i18n="r2.t1">Fenêtre cintrée —</span>
-          <em data-i18n="r2.t2">Style classique</em>
-        </h2>
-        <div class="real-body">
-          <p data-i18n="r2.p1">Création d'une fenêtre cintrée à petits carreaux posée sur balcon en pierre de taille, menuiserie assemblée selon les méthodes du XVIII<sup>e</sup> siècle.</p>
+        <div class="member-info">
+          <h3 class="member-name">Benoît <span class="last">DROUIN</span></h3>
+          <p class="member-desc" data-i18n="bio.benoit">Benoît Drouin a débuté à seize ans comme apprenti maçon et tailleur de pierre chez les Compagnons du Devoir, se formant sur des chantiers emblématiques et pilotant des projets d'envergure comme Villers-Cotterêts, Versailles, le Louvre, les Invalides, et la flèche de Notre-Dame de Paris, avec une clientèle internationale exigeante (Émirats, USA).</p>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- 3. Baie haute — Restauration patrimoniale -->
-    <article class="real">
-      <div class="real-carousel is-landscape" data-autoplay="0">
-        <div class="slide is-active" style="background-image:url('assets/fenetres-03.png');"></div>
-      </div>
-      <div class="real-text">
-        <h2 class="real-title">
-          <span data-i18n="r3.t1">Baie haute —</span>
-          <em data-i18n="r3.t2">Restauration patrimoniale</em>
-        </h2>
-        <div class="real-body">
-          <p data-i18n="r3.p1">Reprise d'une baie haute en encadrement de pierre, menuiserie à imposte cintrée, croisillons fins et garde-corps en fer forgé restauré à l'identique.</p>
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-geoffroy.png');"></div>
+          <div class="frame"></div>
         </div>
-      </div>
-    </article>
-
-    <!-- 4. Hôtel particulier — Cour pavée -->
-    <article class="real reverse">
-      <div class="real-carousel is-landscape" data-autoplay="0">
-        <div class="slide is-active" style="background-image:url('assets/fenetres-04.png');"></div>
-      </div>
-      <div class="real-text">
-        <h2 class="real-title">
-          <span data-i18n="r4.t1">Hôtel particulier —</span>
-          <em data-i18n="r4.t2">Façade et baies cintrées</em>
-        </h2>
-        <div class="real-body">
-          <p data-i18n="r4.p1">Restauration de l'ensemble des fenêtres et baies cintrées d'une cour d'honneur, lecture stéréotomique des arcs, mise en peinture mate et reprise des huisseries dans le respect des proportions d'origine.</p>
+        <div class="member-info">
+          <h3 class="member-name">Geoffroy <span class="last">BIGO</span></h3>
+          <p class="member-desc" data-i18n="bio.geoffroy">Geoffroy Bigo accompagne depuis de nombreuses années les acteurs du patrimoine, du luxe et de la tradition. Son expertise des métiers d'art et sa connaissance fine des écosystèmes d'artisans permettent de mobiliser les talents les plus rares pour chaque chantier d'exception, dans le respect absolu des matériaux d'origine et des exigences patrimoniales.</p>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- 5. Façade en pierre — Croisillons restitués -->
-    <article class="real">
-      <div class="real-carousel is-landscape" data-autoplay="0">
-        <div class="slide is-active" style="background-image:url('assets/fenetres-05.png');"></div>
-      </div>
-      <div class="real-text">
-        <h2 class="real-title">
-          <span data-i18n="r5.t1">Façade en pierre —</span>
-          <em data-i18n="r5.t2">Croisillons restitués</em>
-        </h2>
-        <div class="real-body">
-          <p data-i18n="r5.p1">Restitution à l'identique des fenêtres à grands carreaux d'une façade en pierre de taille, chêne massif assemblé à tenon-mortaise et finition peinte dans des tons bleu sourd.</p>
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-stephanie.png');"></div>
+          <div class="frame"></div>
         </div>
-      </div>
-    </article>
-
+        <div class="member-info">
+          <h3 class="member-name">Stéphanie <span class="last">REDONDO</span></h3>
+          <p class="member-desc" data-i18n="bio.stephanie">Après une carrière dans de grands groupes (Nexity, Groupe Bertrand, EOL, Coreal) et des cabinets prestigieux comme FRANC Architecture, Stéphanie garantit une communication fluide, une prise de décision rapide et une cohérence parfaite entre les différents métiers.</p>
+        </div>
+      </article>
+    </div>
   </section>
-
   <script>
-    // ---------- Carousels (autoplay + dots) ----------
-    document.querySelectorAll('.real-carousel').forEach(car => {
-      const slides = car.querySelectorAll('.slide');
-      const dotsWrap = car.querySelector('.dots');
-      const delay = parseInt(car.dataset.autoplay || '4500', 10);
-      // Single-image or no dots container — nothing to wire up
-      if (!dotsWrap || slides.length < 2 || delay <= 0) return;
-      let i = 0;
-      slides.forEach((_, idx) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('aria-label', 'Image ' + (idx + 1));
-        if (idx === 0) b.classList.add('is-active');
-        b.addEventListener('click', () => { go(idx); restart(); });
-        dotsWrap.appendChild(b);
-      });
-      const dots = dotsWrap.querySelectorAll('button');
-      function go(n) {
-        slides[i].classList.remove('is-active');
-        dots[i].classList.remove('is-active');
-        i = (n + slides.length) % slides.length;
-        slides[i].classList.add('is-active');
-        dots[i].classList.add('is-active');
-      }
-      let timer;
-      function start() { stop(); timer = setInterval(() => go(i + 1), delay); }
-      function stop()  { clearInterval(timer); }
-      function restart() { stop(); start(); }
-      car.addEventListener('mouseenter', stop);
-      car.addEventListener('mouseleave', start);
-      start();
-    });
-
-    // ---------- i18n ----------
     const I18N = {
       fr: {
-        "nav.home": "Accueil", "nav.group": "Le Groupe", "nav.group.portrait": "Portrait", "nav.group.histoire": "Histoire", "nav.group.valeurs": "Valeurs", "nav.art": "L'Art des Métiers",
-        "nav.real": "Nos Réalisations",
+        "nav.home": "Accueil",
+        "nav.group": "Le Groupe", "nav.group.portrait": "Portrait", "nav.group.histoire": "Histoire", "nav.group.valeurs": "Valeurs",
+        "nav.art": "L'Art des Métiers",
+        "nav.real": "Nos Réalisations", "nav.art.eyebrow": "Matières & savoir-faire",
+        "nav.art.verre": "Verre", "nav.art.bois": "Bois", "nav.art.dorures": "Dorures",
+        "nav.art.mineraux": "Minéraux", "nav.art.metaux": "Métaux & alliages",
         "nav.space": "Espaces & Structures", "nav.space.eyebrow": "Architecture intérieure",
         "nav.space.peintures": "Peintures", "nav.space.moulures": "Moulures", "nav.space.dorure": "Dorure",
         "nav.space.mosaique": "Mosaïque", "nav.space.fenetre": "Fenêtres", "nav.space.escalier": "Escaliers", "nav.space.sol": "Sol",
         "nav.contact": "Nous contacter", "nav.contact.eyebrow": "Entrer en relation",
         "nav.contact.client": "Parler de notre projet", "nav.contact.join": "Nous rejoindre",
-        "bc.home": "Accueil", "bc.here": "Fenêtres",
-        "title.t1": "Fenêtres",
-        "cat.sub": "Menuiseries d'origine, vitraux d'art et baies cintrées, préserver la lumière sans renoncer à la performance.",
-        "r1.t1": "Fenêtre Renaissance —",
-        "r1.t2": "Bois sculpté",
-        "r1.p1": "Restauration d'une fenêtre à meneaux de la Renaissance, montants sculptés, vitrage en losange au plomb et reprise des décors selon les techniques d'origine.",
-        "r2.t1": "Fenêtre cintrée —",
-        "r2.t2": "Style classique",
-        "r2.p1": "Création d'une fenêtre cintrée à petits carreaux posée sur balcon en pierre de taille, menuiserie assemblée selon les méthodes du XVIIIe siècle.",
-        "r3.t1": "Baie haute —",
-        "r3.t2": "Restauration patrimoniale",
-        "r3.p1": "Reprise d'une baie haute en encadrement de pierre, menuiserie à imposte cintrée, croisillons fins et garde-corps en fer forgé restauré à l'identique.",
-        "r4.t1": "Hôtel particulier —",
-        "r4.t2": "Façade et baies cintrées",
-        "r4.p1": "Restauration de l'ensemble des fenêtres et baies cintrées d'une cour d'honneur, lecture stéréotomique des arcs, mise en peinture mate et reprise des huisseries dans le respect des proportions d'origine.",
-        "r5.t1": "Façade en pierre —",
-        "r5.t2": "Croisillons restitués",
-        "r5.p1": "Restitution à l'identique des fenêtres à grands carreaux d'une façade en pierre de taille, chêne massif assemblé à tenon-mortaise et finition peinte dans des tons bleu sourd.",
+        "bc.home": "Accueil", "bc.here": "Portraits",
+        "title.t1": "Nos", "title.t2": "Portraits",
+        "nous.title": "Nous",
+        "nous.intro": "Trois regards complémentaires, une même exigence, l'amour du beau geste, du détail juste, du patrimoine vivant.",
+        "role.founder": "Fondateur",
+        "role.partner": "Associé",
+        "role.director": "Directrice",
         "back": "Retour",
+        "bio.benoit": "Benoît Drouin a débuté à seize ans comme apprenti maçon et tailleur de pierre chez les Compagnons du Devoir, se formant sur des chantiers emblématiques et pilotant des projets d'envergure comme Villers-Cotterêts, Versailles, le Louvre, les Invalides, et la flèche de Notre-Dame de Paris, avec une clientèle internationale exigeante (Émirats, USA).",
+        "bio.geoffroy": "Geoffroy Bigo accompagne depuis de nombreuses années les acteurs du patrimoine, du luxe et de la tradition. Son expertise des métiers d'art et sa connaissance fine des écosystèmes d'artisans permettent de mobiliser les talents les plus rares pour chaque chantier d'exception, dans le respect absolu des matériaux d'origine et des exigences patrimoniales.",
+        "bio.stephanie": "Après une carrière dans de grands groupes (Nexity, Groupe Bertrand, EOL, Coreal) et des cabinets prestigieux comme FRANC Architecture, Stéphanie garantit une communication fluide, une prise de décision rapide et une cohérence parfaite entre les différents métiers.",
+        "hist.t1": "Notre",
+        "hist.t2": "Histoire",
+        "hist.body": "<p class='essay-text'><span class='firstcap'>L</span>e Groupe Majestis est né de la volonté de réunir excellence technique, culture architecturale et accompagnement haut de gamme. Issu de l'expérience de professionnels de l'architecture, de la rénovation d'exception et de l'immobilier, le groupe développe une approche exigeante du bâti. Nous intervenons sur des actifs résidentiels, tertiaires et patrimoniaux avec une vision globale et contemporaine.</p><p class='essay-text'>Chaque projet est pensé comme une réalisation unique, alliant précision, cohérence et maîtrise technique. Inspiré par l'élégance du patrimoine parisien, le Groupe Majestis préserve l'identité des lieux tout en les sublimant durablement. Notre exigence s'exprime dans le choix des matériaux, la qualité d'exécution et le soin porté aux finitions.</p><p class='essay-text'>Nous accordons une attention particulière au respect des délais, des budgets et des attentes de nos clients. Au-delà de la rénovation, nous défendons une vision du luxe sobre, élégante et maîtrisée. Nous accompagnons architectes, investisseurs, syndics et propriétaires privés dans leurs projets les plus exigeants. Aujourd'hui, le Groupe Majestis s'impose comme un partenaire de confiance dans la valorisation d'actifs d'exception.</p>",
+        "val.t1": "Nos",
+        "val.t2": "Valeurs",
+        "val.body": "<p class='essay-text'><span class='firstcap'>N</span>os valeurs reposent avant tout sur l'exigence, la précision et le respect des engagements pris auprès de nos clients et partenaires. Nous défendons une approche où la qualité d'exécution, la maîtrise technique et le sens du détail occupent une place centrale.</p><p class='essay-text'>Attaché au patrimoine architectural et à l'élégance des ouvrages, le Groupe Majestis veille à préserver l'identité des lieux tout en les valorisant durablement. Nous croyons en une vision du luxe sobre et intemporelle, fondée sur la noblesse des matériaux, la cohérence esthétique et la pérennité des réalisations.</p><p class='essay-text'>La confiance, la transparence et l'écoute constituent le socle de chacune de nos collaborations. Notre force réside également dans notre capacité à coordonner des savoir-faire complémentaires autour d'un même niveau d'excellence. Chaque projet est conduit avec le même engagement, qu'il s'agisse d'un actif patrimonial, résidentiel ou tertiaire. Le Groupe Majestis porte ainsi une vision à la fois contemporaine, institutionnelle et profondément humaine de la rénovation haut de gamme.</p>"
       },
       en: {
-        "nav.home": "Home", "nav.group": "The House", "nav.group.portrait": "Portrait", "nav.group.histoire": "Story", "nav.group.valeurs": "Values", "nav.art": "The Crafts",
-        "nav.real": "Our Realizations",
+        "nav.home": "Home",
+        "nav.group": "The House", "nav.group.portrait": "Portrait", "nav.group.histoire": "Story", "nav.group.valeurs": "Values",
+        "nav.art": "The Crafts",
+        "nav.real": "Our Realizations", "nav.art.eyebrow": "Materials & savoir-faire",
+        "nav.art.verre": "Glass", "nav.art.bois": "Wood", "nav.art.dorures": "Gilding",
+        "nav.art.mineraux": "Minerals", "nav.art.metaux": "Metals & alloys",
         "nav.space": "Spaces & Structures", "nav.space.eyebrow": "Interior architecture",
         "nav.space.peintures": "Paintings", "nav.space.moulures": "Mouldings", "nav.space.dorure": "Gilding",
         "nav.space.mosaique": "Mosaic", "nav.space.fenetre": "Windows", "nav.space.escalier": "Staircases", "nav.space.sol": "Floors",
         "nav.contact": "Contact", "nav.contact.eyebrow": "Get in touch",
         "nav.contact.client": "Talk about your project", "nav.contact.join": "Join us",
-        "bc.home": "Home", "bc.here": "Windows",
-        "title.t1": "Windows",
-        "cat.sub": "Original joinery, stained-glass and arched bays, keeping the light intact without sacrificing performance.",
-        "r1.t1": "Renaissance window —",
-        "r1.t2": "Carved timber",
-        "r1.p1": "Restoration of a Renaissance mullioned window, carved jambs, lead-set diamond glazing and recovery of decors using original techniques.",
-        "r2.t1": "Arched window —",
-        "r2.t2": "Classical style",
-        "r2.p1": "Creation of an arched window with small panes set above a dressed-stone balcony, joinery assembled following 18th-century methods.",
-        "r3.t1": "Tall bay —",
-        "r3.t2": "Heritage restoration",
-        "r3.p1": "Refurbishment of a tall stone-framed bay, arched transom, fine glazing bars and wrought-iron guardrail identically restored.",
-        "r4.t1": "Hôtel particulier —",
-        "r4.t2": "Facade and arched bays",
-        "r4.p1": "Restoration of all windows and arched bays of a courtyard of honour, stereotomic reading of the arches, matte paintwork and joinery refurbished respecting the original proportions.",
-        "r5.t1": "Stone facade —",
-        "r5.t2": "Restored glazing bars",
-        "r5.p1": "Identical restoration of large-pane windows on a dressed-stone facade, solid oak assembled with mortise-and-tenon and painted finish in muted blue tones.",
+        "bc.home": "Home", "bc.here": "Portraits",
+        "title.t1": "Our", "title.t2": "Portraits",
+        "nous.title": "Us",
+        "nous.intro": "Three complementary perspectives, one shared demand, the love of a fine gesture, of the right detail, of living heritage.",
+        "role.founder": "Founder",
+        "role.partner": "Partner",
+        "role.director": "Director",
         "back": "Back",
+        "bio.benoit": "Benoît Drouin began at sixteen as an apprentice mason and stonecutter with the Compagnons du Devoir, training on landmark sites and leading major projects such as Villers-Cotterêts, Versailles, the Louvre, Les Invalides, and the spire of Notre-Dame de Paris, for a demanding international clientele (Emirates, USA).",
+        "bio.geoffroy": "For many years Geoffroy Bigo has supported actors of heritage, luxury and tradition. His expertise in the arts and crafts and his fine knowledge of artisan ecosystems make it possible to mobilise the rarest talents for every exceptional project, with absolute respect for original materials and heritage requirements.",
+        "bio.stephanie": "After a career in major groups (Nexity, Groupe Bertrand, EOL, Coreal) and prestigious firms such as FRANC Architecture, Stéphanie guarantees fluid communication, quick decision-making and perfect coherence between the different trades.",
+        "hist.t1": "Our",
+        "hist.t2": "Story",
+        "hist.body": "<p class='essay-text'><span class='firstcap'>T</span>he Majestis Group was born from the desire to unite technical excellence, architectural culture, and high-end support. Drawing on the expertise of professionals in architecture, exceptional renovation, and real estate, the group develops a demanding approach to the built environment. We work on residential, commercial, and heritage assets with a global, contemporary vision.</p><p class='essay-text'>Each project is conceived as a unique creation, combining precision, coherence, and technical mastery. Inspired by the elegance of Parisian heritage, the Majestis Group preserves the identity of places while enhancing them sustainably. Our standards are expressed in the choice of materials, the quality of execution, and the care given to every finish.</p><p class='essay-text'>We pay particular attention to respecting deadlines, budgets, and our clients' expectations. Beyond renovation, we defend a vision of luxury that is sober, elegant, and refined. We accompany architects, investors, building managers, and private owners on their most demanding projects. Today, the Majestis Group stands as a trusted partner in the enhancement of exceptional assets.</p>",
+        "val.t1": "Our",
+        "val.t2": "Values",
+        "val.body": "<p class='essay-text'><span class='firstcap'>O</span>ur values rest above all on rigour, precision, and respect for the commitments made to our clients and partners. We champion an approach in which quality of execution, technical mastery, and attention to detail hold a central place.</p><p class='essay-text'>Attached to architectural heritage and the elegance of works, the Majestis Group ensures the identity of places is preserved while being sustainably enhanced. We believe in a vision of luxury that is sober and timeless, founded on the nobility of materials, aesthetic coherence, and the longevity of creations.</p><p class='essay-text'>Trust, transparency, and listening form the foundation of every collaboration. Our strength also lies in our ability to coordinate complementary savoir-faire around a single level of excellence. Each project is conducted with the same commitment, whether it is a heritage, residential, or commercial asset. The Majestis Group thus carries a vision of high-end renovation that is at once contemporary, institutional, and profoundly human.</p>"
       }
     };
+
     function setLang(lang) {
       document.documentElement.lang = lang;
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -765,6 +814,7 @@
     document.querySelectorAll('.lang-btn').forEach(b => {
       b.addEventListener('click', () => setLang(b.dataset.lang));
     });
+
     document.querySelectorAll('.nav-item').forEach(item => {
       const btn = item.querySelector('.nav-link');
       const hasDropdown = item.querySelector('.dropdown');
@@ -780,6 +830,7 @@
         document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
       }
     });
+
     const siteHeader = document.getElementById('siteHeader');
     function onScroll() {
       if (window.scrollY > 40) siteHeader.classList.add('scrolled');
