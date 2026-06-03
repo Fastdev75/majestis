@@ -270,7 +270,7 @@
   .lava-more {
     max-width: 760px;
     margin: 30px auto 0;
-    text-align: left;
+    text-align: center;
     border: 1px solid rgba(217,184,106,0.22);
     background: rgba(8,11,22,0.35);
   }
@@ -278,7 +278,7 @@
   .lava-more summary {
     list-style: none;
     cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: center;
     gap: 16px;
     padding: 18px 26px;
     font-family: 'Jost', sans-serif;
@@ -317,11 +317,8 @@
     margin: 18px 0 8px;
   }
   .lava-steps li {
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-    align-items: baseline;
-    gap: 6px 16px;
-    padding: 12px 0;
+    text-align: center;
+    padding: 14px 0;
     border-bottom: 1px solid rgba(217,184,106,0.10);
   }
   .lava-steps li:last-child { border-bottom: 0; }
@@ -329,16 +326,17 @@
     font-family: 'Jost', sans-serif;
     font-size: 11px; letter-spacing: 0.2em;
     color: rgba(217,184,106,0.7);
+    margin-right: 10px;
   }
   .lava-steps .step-t {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic; font-weight: 500;
     font-size: 21px;
     color: var(--gold-soft);
-    white-space: nowrap;
   }
   .lava-steps .step-d {
-    grid-column: 3;
+    display: block;
+    margin-top: 4px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px; line-height: 1.5;
     color: rgba(244,237,224,0.82);
@@ -352,7 +350,7 @@
     padding-top: 22px;
     border-top: 1px solid rgba(217,184,106,0.16);
   }
-  .lava-guarantees li { text-align: left; }
+  .lava-guarantees li { text-align: center; }
   .lava-guarantees .g-t {
     display: block;
     font-family: 'Jost', sans-serif;
