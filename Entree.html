@@ -279,6 +279,11 @@
   .real-carousel.is-landscape {
     aspect-ratio: 5/4;
   }
+  /* Article 3 (Musée des Arts Décoratifs) : source portrait -> cadre portrait */
+  .reals .real:nth-of-type(3) .real-carousel.is-landscape {
+    aspect-ratio: 5/7;
+    max-width: 460px;
+  }
   /* Last 4 articles use smaller source images (106-223 px wide).
      Shrink containers and match each native orientation to avoid crop+upscale blur. */
   .reals .real:nth-of-type(9) .real-carousel.is-landscape,
@@ -577,7 +582,7 @@
             <ul>
               <li><a href="Sol.html"><span class="dot"></span><span>Sol</span><span class="arrow">&#8594;</span></a></li>
               <li><a href="Escaliers.html"><span class="dot"></span><span>Escalier</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Mur.html"><span class="dot"></span><span>Mur</span><span class="arrow">&#8594;</span></a></li>
+              <li><a href="Plafond.html"><span class="dot"></span><span>Plafond</span><span class="arrow">&#8594;</span></a></li>
               <li><a href="Charpente.html"><span class="dot"></span><span>Charpente</span><span class="arrow">&#8594;</span></a></li>
               <li><a href="Bibliotheque.html"><span class="dot"></span><span>Bibliothèque</span><span class="arrow">&#8594;</span></a></li>
               <li><a href="Salle de Bain.html"><span class="dot"></span><span>Salle de bain</span><span class="arrow">&#8594;</span></a></li>
@@ -682,6 +687,21 @@
         </div>
       </div>
     </article>
+    <!-- Entrée — Musée des Arts Décoratifs -->
+    <article class="real">
+      <div class="real-carousel is-landscape" data-autoplay="0">
+        <div class="slide is-active" style="background-image:url('assets/entree-mad-mosaique-01.jpg');"></div>
+      </div>
+      <div class="real-text">
+        <h2 class="real-title">
+          <span data-i18n="r3.t1">Entrée —</span>
+          <em data-i18n="r3.t2">pierre & mosaïque</em>
+        </h2>
+        <div class="real-body">
+          <p data-i18n="r3.p1">Galerie monumentale du Musée des Arts Décoratifs : nef voûtée éclairée de verrières, arcades de pierre claire et sol en mosaïque à frises géométriques. Un volume d'apparat où la pierre de taille et la mosaïque dialoguent sur toute la longueur.</p>
+        </div>
+      </div>
+    </article>
   </section>
 
   <script>
@@ -738,6 +758,9 @@
         "r2.t1": "Entrée —",
         "r2.t2": "hall néoclassique",
         "r2.p1": "Hall d'honneur monumental au décor néoclassique noir et blanc, galeries à arcades, balustrades de pierre et lustre de cristal en point d'orgue. Un volume théâtral à double hauteur qui orchestre une entrée spectaculaire.",
+        "r3.t1": "Entrée —",
+        "r3.t2": "pierre & mosaïque",
+        "r3.p1": "Galerie monumentale du Musée des Arts Décoratifs : nef voûtée éclairée de verrières, arcades de pierre claire et sol en mosaïque à frises géométriques. Un volume d'apparat où la pierre de taille et la mosaïque dialoguent sur toute la longueur.",
         "back": "Retour"
       },
       en: {
@@ -758,6 +781,9 @@
         "r2.t1": "Entrance —",
         "r2.t2": "neoclassical hall",
         "r2.p1": "Monumental hall of honour with black-and-white neoclassical decor, arcaded galleries, stone balustrades and a crystal chandelier as its centrepiece. A theatrical double-height volume that orchestrates a spectacular entrance.",
+        "r3.t1": "Entrance —",
+        "r3.t2": "stone & mosaic",
+        "r3.p1": "Monumental gallery of the Musée des Arts Décoratifs: a vaulted nave lit by skylights, pale stone arcades and a mosaic floor with geometric friezes. A ceremonial volume where dressed stone and mosaic converse along its full length.",
         "back": "Back"
       }
     };
