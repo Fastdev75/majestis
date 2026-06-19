@@ -23,19 +23,19 @@
   html, body { min-height: 100%; }
   html {
     scroll-behavior: smooth;
-    scrollbar-color: #b9912f #efe7d6;
+    scrollbar-color: #b9912f #e6dcc6;
     scrollbar-width: thin;
   }
   /* WebKit gold scrollbar */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track {
-    background: #efe7d6;
+    background: #e6dcc6;
     border-left: 1px solid rgba(217,184,106,0.18);
   }
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #f5d68a 0%, #d49d3e 50%, #f5d68a 100%);
     border-radius: 999px;
-    border: 2px solid #efe7d6;
+    border: 2px solid #e6dcc6;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #f9e0a0 0%, #e6b85f 50%, #f9e0a0 100%);
@@ -43,7 +43,7 @@
   body {
     font-family: 'Jost', sans-serif;
     color: var(--ivory);
-    background: #f4ede0;
+    background: #ece1cd;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -171,7 +171,7 @@
     left: 50%;
     transform: translateX(-50%);
     min-width: 260px;
-    background: rgba(249,244,235, 0.85);
+    background: rgba(242,235,221, 0.85);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
     border: 1px solid rgba(217,184,106,0.22);
@@ -268,7 +268,7 @@
     border: 1px solid rgba(217,184,106,0.4);
     border-radius: 999px;
     padding: 4px;
-    background: rgba(249,244,235,0.4);
+    background: rgba(242,235,221,0.4);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
@@ -510,7 +510,7 @@
   body > header.scrolled {
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
-    background: rgba(249,244,235,0.82);
+    background: rgba(242,235,221,0.82);
     border-bottom: 1px solid rgba(217,184,106,0.18);
     padding-top: 10px;
     padding-bottom: 8px;
@@ -523,7 +523,7 @@
   /* ---------- Section : Nos Réalisations ---------- */
   .realisations {
     position: relative;
-    background: #f4ede0;
+    background: #ece1cd;
     padding: 120px 56px 100px;
     min-height: 100vh;
     display: flex;
@@ -754,7 +754,7 @@
     width: 48px; height: 48px;
     border-radius: 50%;
     border: 1px solid rgba(217,184,106,0.35);
-    background: rgba(249,244,235, 0.55);
+    background: rgba(242,235,221, 0.55);
     backdrop-filter: blur(10px) saturate(140%);
     -webkit-backdrop-filter: blur(10px) saturate(140%);
     cursor: pointer;
@@ -780,7 +780,7 @@
 
   .mobile-drawer {
     position: fixed; inset: 0;
-    background: rgba(249,244,235, 0.96);
+    background: rgba(242,235,221, 0.96);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
     z-index: 25;
@@ -799,7 +799,7 @@
     display: flex; justify-content: center;
     margin-bottom: 36px;
   }
-  .mobile-drawer .md-lang .lang-switch { background: rgba(249,244,235,0.4); }
+  .mobile-drawer .md-lang .lang-switch { background: rgba(242,235,221,0.4); }
   .md-item { border-bottom: 1px solid rgba(217,184,106,0.18); }
   .md-link {
     display: flex; align-items: center; justify-content: space-between;
@@ -1293,7 +1293,7 @@
       position: relative;
       z-index: 5;
       margin-top: 60px;
-      background: #ece0cb;
+      background: #e1d5bd;
       border-top: 1px solid rgba(217,184,106,0.22);
       padding: 48px 32px 56px;
       font-family: 'Jost', sans-serif;
@@ -1342,7 +1342,7 @@
     .back-to-top {
       position: fixed; right: 22px; bottom: 32px;
       width: 44px; height: 44px;
-      background: rgba(249,244,235,0.78);
+      background: rgba(242,235,221,0.78);
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(217,184,106,0.45);
       border-radius: 50%;
@@ -1451,8 +1451,9 @@
   .footer-social a { border-color: rgba(176,138,54,0.5); }
   .back-link:hover { color: #7d5f1d; }
   .nav-item:hover .nav-link, .nav-item:focus-within .nav-link,
-  .dropdown a:hover, .md-link:hover, .footer-menu a:hover,
-  .footer-social a:hover { color: #7d5f1d; }
+  .dropdown a:hover, .dropdown-eyebrow:hover, .menu-call:hover,
+  .md-link:hover, .footer-menu a:hover, .footer-social a:hover,
+  .back-link:hover { color: #7d5f1d; }
   /* Home : nav claire sur le hero plein cadre, sombre au scroll */
   body > header:not(.scrolled) .nav-link { color: rgba(244,237,224,0.92); }
   body > header:not(.scrolled) .lang-btn { color: rgba(244,237,224,0.78); }
