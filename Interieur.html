@@ -1049,5 +1049,14 @@
   .back-link:hover { color: #7d5f1d; }
   </style>
 
+  <style id="duo-centered-grid">
+  /* Hubs : grille flex centrée — la rangée incomplète du bas est centrée (plus de trou) */
+  .duo-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; }
+  .duo-card { min-height: 0; flex: 0 0 calc((100% - 66px) / 4); }
+  @media (max-width: 1280px) { .duo-card { flex-basis: calc((100% - 44px) / 3); } }
+  @media (max-width: 980px)  { .duo-grid { gap: 16px; } .duo-card { flex-basis: calc((100% - 16px) / 2); aspect-ratio: 4/5; } }
+  @media (max-width: 560px)  { .duo-card { flex-basis: 100%; } }
+  </style>
+
 </body>
 </html>
