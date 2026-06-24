@@ -846,6 +846,16 @@
     body > header .lang { display: none !important; }
   }
 
+
+  /* ---------- Vocation ---------- */
+  .vocation { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: clamp(80px,9vw,140px) clamp(24px,5vw,64px) clamp(30px,4vw,60px); text-align: center; }
+  .vocation-eyebrow { font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.42em; text-transform:uppercase; color:#9a7826; margin-bottom:30px; display:inline-flex; align-items:center; gap:14px; }
+  .vocation-eyebrow::before,.vocation-eyebrow::after{ content:""; width:34px; height:1px; background:#b9912f; }
+  .vocation-statement { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(30px,4vw,56px); line-height:1.12; color:#15172c; text-wrap:balance; margin-bottom:34px; }
+  .vocation-statement em{ font-style:italic; font-weight:500; background:linear-gradient(135deg,#c8a14e 0%,#a87b27 50%,#c8a14e 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .vocation-body{ max-width:780px; margin:0 auto; }
+  .vocation-body p{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(19px,1.55vw,25px); line-height:1.65; color:rgba(21,23,44,0.9); text-wrap:pretty; }
+  .vocation-body p + p{ margin-top:1.1em; }
 </style>
 <style>
   /* Menu déroulant Nos Réalisations (3 univers) */
@@ -881,6 +891,7 @@
             <li><a href="Portrait.html"><span class="dot"></span><span data-i18n="nav.group.portrait">Portrait</span><span class="arrow">&#8594;</span></a></li>
             <li><a href="Histoire.html"><span class="dot"></span><span data-i18n="nav.group.histoire">Histoire</span><span class="arrow">&#8594;</span></a></li>
             <li><a href="Valeurs.html"><span class="dot"></span><span data-i18n="nav.group.valeurs">Valeurs</span><span class="arrow">&#8594;</span></a></li>
+            <li><a href="Expertise.html"><span class="dot"></span><span data-i18n="nav.group.expertise">Expertise</span><span class="arrow">&#8594;</span></a></li>
           </ul>
         </div>
       </div>
@@ -988,6 +999,16 @@
     </div>
   </section>
 
+  <!-- ============== VOCATION ============== -->
+  <section class="vocation" id="vocation">
+    <span class="vocation-eyebrow" data-i18n="voc.eyebrow">Vocation</span>
+    <h2 class="vocation-statement"><span data-i18n="voc.s1">L'excellence artisanale</span> <em data-i18n="voc.s2">au service des projets les plus ambitieux.</em></h2>
+    <div class="vocation-body">
+      <p data-i18n="voc.p1">Fondateur de Majestis, le compagnon du Devoir Benoît Drouin est intervenu aux côtés des meilleurs artisans d'art français sur des chantiers emblématiques du patrimoine et du luxe contemporain.</p>
+      <p data-i18n="voc.p2">Aujourd'hui, il accompagne architectes et propriétaires en leur offrant un seul interlocuteur pour assurer la maîtrise d'œuvre des réalisations les plus exigeantes en qualité, délai et budget.</p>
+    </div>
+  </section>
+
   <!-- ============== NOS RÉALISATIONS ============== -->
   <section class="realisations" id="realisations">
     <div class="real-wrap">
@@ -1052,7 +1073,7 @@
         brand: "Majestis",
         brandTag: "Architecture · Paris · Maison fondée 1908",
         "nav.home": "Accueil",
-        "nav.group": "Le Groupe", "nav.group.portrait": "Portrait", "nav.group.histoire": "Histoire", "nav.group.valeurs": "Valeurs",
+        "nav.group": "Le Groupe", "nav.group.portrait": "Portrait", "nav.group.histoire": "Histoire", "nav.group.valeurs": "Valeurs", "nav.group.expertise": "Expertise",
         "nav.group.eyebrow": "La Maison",
         "nav.group.story": "Notre histoire",
         "nav.group.values": "Nos valeurs",
@@ -1079,6 +1100,11 @@
         "nav.contact.join": "Nous rejoindre",
         "real.title": "Nos Réalisations",
         "real.sub": "Trois univers, trois manières de transcender le patrimoine\u00a0: intérieurs d'exception, extérieurs et façades, décoration & finition.",
+        "voc.eyebrow": "Vocation",
+        "voc.s1": "L'excellence artisanale",
+        "voc.s2": "au service des projets les plus ambitieux.",
+        "voc.p1": "Fondateur de Majestis, le compagnon du Devoir Benoît Drouin est intervenu aux côtés des meilleurs artisans d'art français sur des chantiers emblématiques du patrimoine et du luxe contemporain.",
+        "voc.p2": "Aujourd'hui, il accompagne architectes et propriétaires en leur offrant un seul interlocuteur pour assurer la maîtrise d'œuvre des réalisations les plus exigeantes en qualité, délai et budget.",
         "real.interieur.t1": "Intérieur",
         "real.exterieur.t1": "Extérieur",
         "real.discover": "Explorer",
@@ -1113,7 +1139,7 @@
         brand: "Majestis",
         brandTag: "Architecture · Paris · Est. 1908",
         "nav.home": "Home",
-        "nav.group": "The House", "nav.group.portrait": "Portrait", "nav.group.histoire": "Story", "nav.group.valeurs": "Values",
+        "nav.group": "The House", "nav.group.portrait": "Portrait", "nav.group.histoire": "Story", "nav.group.valeurs": "Values", "nav.group.expertise": "Expertise",
         "nav.group.eyebrow": "The Maison",
         "nav.group.story": "Our story",
         "nav.group.values": "Our values",
@@ -1140,6 +1166,11 @@
         "nav.contact.join": "Join us",
         "real.title": "Our Projects",
         "real.sub": "Three worlds, three ways to transcend heritage: exceptional interiors, exteriors and façades, decoration & finish.",
+        "voc.eyebrow": "Vocation",
+        "voc.s1": "Artisanal excellence",
+        "voc.s2": "in the service of the most ambitious projects.",
+        "voc.p1": "Founder of Majestis, Compagnon du Devoir Benoît Drouin has worked alongside the finest French art craftsmen on emblematic projects of heritage and contemporary luxury.",
+        "voc.p2": "Today, he supports architects and owners by offering a single point of contact to ensure the project management of the most demanding works in quality, time and budget.",
         "real.interieur.t1": "Interior",
         "real.exterieur.t1": "Exterior",
         "real.discover": "Explore",
@@ -1232,6 +1263,7 @@
           <li><a href="Portrait.html"><span data-i18n="nav.group.portrait">Portrait</span></a></li>
           <li><a href="Histoire.html"><span data-i18n="nav.group.histoire">Histoire</span></a></li>
           <li><a href="Valeurs.html"><span data-i18n="nav.group.valeurs">Valeurs</span></a></li>
+          <li><a href="Expertise.html"><span data-i18n="nav.group.expertise">Expertise</span></a></li>
         </ul>
       </li>
       <li class="md-item">
