@@ -15,11 +15,11 @@
       position: relative;
       z-index: 5;
       margin-top: 60px;
-      background: #e1d5bd;
+      background: #08111c;
       border-top: 1px solid rgba(217,184,106,0.22);
       padding: 48px 32px 56px;
       font-family: 'Jost', sans-serif;
-      color: rgba(18,20,40,0.7);
+      color: rgba(244,237,224,0.7);
     }
     .site-footer::before {
       content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 1px;
@@ -47,7 +47,7 @@
     .footer-social svg { width: 14px; height: 14px; fill: currentColor; }
     .footer-copy {
       font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
-      color: rgba(18,20,40,0.55);
+      color: rgba(244,237,224,0.55);
     }
     .footer-copy span { color: #d9b86a; font-weight: 500; letter-spacing: 0.32em; }
     .footer-menu {
@@ -55,7 +55,7 @@
       font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
     }
     .footer-menu a {
-      color: rgba(18,20,40,0.55);
+      color: rgba(244,237,224,0.55);
       text-decoration: none;
       transition: color .25s ease;
     }
@@ -64,7 +64,7 @@
     .back-to-top {
       position: fixed; right: 22px; bottom: 32px;
       width: 44px; height: 44px;
-      background: rgba(242,235,221,0.78);
+      background: rgba(8,11,22,0.78);
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(217,184,106,0.45);
       border-radius: 50%;
@@ -124,39 +124,7 @@
 
 
 
-  <style id="majestis-light-theme">
-  /* ===== Thème clair (fond beige) — textes sur fond, jamais sur photo ===== */
-  body { color: #15172c; }
-  .page-title, .real-title, .real-title span, .md-link, .reals-empty,
-  .section-title, .metier-title, .member-name, .essay-title, .nous-eyebrow em,
-  .contact-name, .info-value, .info-value a, .legal-inner strong { color: #15172c; }
-  .real-body, .real-list li { color: rgba(18,20,40,0.9); }
 
-  /* séparateurs / filets dorés un peu plus marqués sur clair */
-  .real + .real { border-top-color: rgba(176,138,54,0.30); }
-  .page-rule { background: linear-gradient(to bottom, transparent, #876616); }
-
-  /* dégradé or assombri (bronze) pour rester lisible sur beige — titres sur fond uniquement */
-  .page-title em, .real-title em, .metier-title em, .essay-title em, .section-title em {
-    background: linear-gradient(135deg,#9c7518 0%,#7a5912 35%,#574010 60%,#7a5912 85%,#9c7518 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent; filter: none;
-  }
-
-  /* petites capitales / labels dorés -> bronze plus contrasté sur beige */
-  .real-tag, .back-link, .breadcrumb .here, .breadcrumb .sep,
-  .dropdown-eyebrow, .footer-copy span, .footer-social a, .back-to-top { color: #785a14; }
-  .footer-social a { border-color: rgba(176,138,54,0.5); }
-  .back-link:hover { color: #5b430f; }
-  .nav-item:hover .nav-link, .nav-item:focus-within .nav-link,
-  .dropdown a:hover, .dropdown-eyebrow:hover, .menu-call:hover,
-  .md-link:hover, .footer-menu a:hover, .footer-social a:hover,
-  .back-link:hover { color: #5b430f; }
-  </style>
-
-  <style id="majestis-readability">
-  /* Lisibilité : seul le sous-titre des pages (sous le grand titre) est agrandi — propre, le reste inchangé */
-  .page-sub { font-size: clamp(20px, 1.6vw, 26px); color: rgba(18,20,40,0.9); line-height: 1.55; }
-  </style>
 
 </body>
 </html>
