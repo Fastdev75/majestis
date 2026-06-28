@@ -524,11 +524,32 @@
   .realisations {
     position: relative;
     background: var(--paris-deep);
-    padding: 120px 56px 100px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+    padding: clamp(80px,9vw,130px) clamp(24px,5vw,64px) clamp(80px,9vw,120px);
     overflow: hidden;
+  }
+  /* ---- Réalisations en duos (3 paires) ---- */
+  .duo3-wrap { position: relative; z-index: 1; max-width: 1480px; margin: 0 auto; }
+  .duo3-row + .duo3-row { margin-top: clamp(56px, 7vw, 100px); }
+  .duo3-row { border-top: 1px solid rgba(217,184,106,0.22); padding-top: clamp(26px,3vw,40px); }
+  .duo3-step { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-1); margin: 0; }
+  .duo3-phrase { margin: 14px 0 0; max-width: 660px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(22px, 2.4vw, 33px); line-height: 1.25; color: rgba(244,237,224,0.92); text-wrap: balance; }
+  .duo3-grid { margin-top: clamp(28px,3vw,44px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px,2.6vw,48px); align-items: end; }
+  .duo3-fig { margin: 0; }
+  .duo3-fig--offset { margin-top: clamp(0px, 6vw, 96px); }
+  .duo3-link { position: relative; display: block; aspect-ratio: 3/2; overflow: hidden; border: 1px solid rgba(217,184,106,0.20); background: rgba(217,184,106,0.04); }
+  .duo3-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+  .duo3-link:hover .duo3-img { transform: scale(1.06); }
+  .duo3-link::after { content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(8,11,22,0.6), rgba(8,11,22,0) 55%); opacity: 0; transition: opacity .4s ease; }
+  .duo3-link:hover::after { opacity: 1; }
+  .duo3-cta { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; z-index: 2; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-soft); opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease; }
+  .duo3-link:hover .duo3-cta { opacity: 1; transform: translateY(0); }
+  .duo3-cap { margin-top: 18px; display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .duo3-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(26px, 2.6vw, 40px); color: var(--ivory); line-height: 1; }
+  .duo3-name--em { font-style: italic; font-weight: 500; background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .duo3-desc { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,237,224,0.6); }
+  @media (max-width: 760px) {
+    .duo3-grid { grid-template-columns: 1fr; gap: 30px; }
+    .duo3-fig--offset { margin-top: 0; }
   }
   .realisations::before {
     content: "";
@@ -896,45 +917,6 @@
         </div>
       </div>
 
-      <div class="nav-item">
-        <a class="nav-link" href="Home.html#realisations">
-          <span data-i18n="nav.real">Nos Réalisations</span>
-          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
-        </a>
-        <div class="dropdown dropdown--real" role="menu">
-          <div class="dropdown-col">
-            <a class="dropdown-eyebrow" href="Interieur.html">Intérieur</a>
-            <ul>
-              <li><a href="Sol.html"><span class="dot"></span><span>Sol</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Escaliers.html"><span class="dot"></span><span>Escalier</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Charpente.html"><span class="dot"></span><span>Charpente</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Bibliotheque.html"><span class="dot"></span><span>Bibliothèque</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Salle de Bain.html"><span class="dot"></span><span>Salle de bain</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Dressing.html"><span class="dot"></span><span>Dressing</span><span class="arrow">&#8594;</span></a></li>
-            </ul>
-          </div>
-          <div class="dropdown-col">
-            <a class="dropdown-eyebrow" href="Exterieur.html">Extérieur</a>
-            <ul>
-              <li><a href="Fenetres.html"><span class="dot"></span><span>Fenêtre</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Facade.html"><span class="dot"></span><span>Façade</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Couronne d'Or.html"><span class="dot"></span><span>Couronne d'Or</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Entree.html"><span class="dot"></span><span>Entrée</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Clocher.html"><span class="dot"></span><span>Clocher</span><span class="arrow">&#8594;</span></a></li>
-            </ul>
-          </div>
-          <div class="dropdown-col">
-            <a class="dropdown-eyebrow" href="Decoration et Finition.html">Décoration &amp; Finition</a>
-            <ul>
-              <li><a href="Peintures.html"><span class="dot"></span><span>Peintures</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Dorure.html"><span class="dot"></span><span>Dorure</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Mosaique.html"><span class="dot"></span><span>Mosaïque</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Moulures.html"><span class="dot"></span><span>Moulures</span><span class="arrow">&#8594;</span></a></li>
-              <li><a href="Pyro Lave.html"><span class="dot"></span><span>Pyro Lave</span><span class="arrow">&#8594;</span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
 
       <div class="nav-item">
         <a class="nav-link" href="Art des Metiers.html">
@@ -1010,53 +992,89 @@
 
   <!-- ============== NOS RÉALISATIONS ============== -->
   <section class="realisations" id="realisations">
-    <div class="real-wrap">
-      <div class="real-grid">
-        <!-- Two small cards first -->
-        <a href="Interieur.html" class="real-card real-card--sm" data-cat="interieur">
-          <div class="real-img" style="background-image:url('assets/realisation-residence.png');"></div>
-          <div class="real-overlay"></div>
-          <div class="real-meta">
-            <h3 class="real-name">
-              <em data-i18n="real.interieur.t1">Intérieur</em>
-            </h3>
-            <span class="real-cta">
-              <span data-i18n="real.discover">Explorer</span>
-              <span class="ar">→</span>
-            </span>
-          </div>
-        </a>
+    <div class="duo3-wrap">
 
-        <a href="Exterieur.html" class="real-card real-card--sm" data-cat="exterieur">
-          <div class="real-img" style="background-image:url('assets/cat-exterieur.jpg');"></div>
-          <div class="real-overlay"></div>
-          <div class="real-meta">
-            <h3 class="real-name">
-              <em data-i18n="real.exterieur.t1">Extérieur</em>
-            </h3>
-            <span class="real-cta">
-              <span data-i18n="real.discover">Explorer</span>
-              <span class="ar">→</span>
-            </span>
-          </div>
-        </a>
-
-        <!-- Décoration & Finition (grande carte) -->
-        <a href="Decoration et Finition.html" class="real-card real-card--big" data-cat="deco">
-          <div class="real-img" style="background-image:url('uploads/new_deco_finition.png');"></div>
-          <div class="real-overlay"></div>
-          <div class="real-meta">
-            <h3 class="real-name">
-              <span data-i18n="real.deco.t1">Décoration</span>
-              <em data-i18n="real.deco.t2">&amp; Finition</em>
-            </h3>
-            <span class="real-cta">
-              <span data-i18n="real.discover">Explorer</span>
-              <span class="ar">→</span>
-            </span>
-          </div>
-        </a>
+      <div class="duo3-row">
+        <p class="duo3-step">— 01 / 03</p>
+        <p class="duo3-phrase" data-i18n="duo.phrase1">De l'épure minimaliste à la grammaire classique française.</p>
+        <div class="duo3-grid">
+          <figure class="duo3-fig">
+            <a class="duo3-link" href="https://fastdev75.github.io/majestis_vitrine/Home.html">
+              <div class="duo3-img" style="background-image:url('assets/duo-contemporain.jpg');"></div>
+              <span class="duo3-cta" data-i18n="duo.cta">Voir nos références</span>
+            </a>
+            <figcaption class="duo3-cap">
+              <span class="duo3-name" data-i18n="duo.contemporain.n">Contemporain</span>
+              <span class="duo3-desc" data-i18n="duo.contemporain.d">Lignes pures, matières contemporaines</span>
+            </figcaption>
+          </figure>
+          <figure class="duo3-fig duo3-fig--offset">
+            <a class="duo3-link" href="https://fastdev75.github.io/majestis_vitrine/Home.html">
+              <div class="duo3-img" style="background-image:url('assets/duo-classique.jpg');"></div>
+              <span class="duo3-cta" data-i18n="duo.cta">Voir nos références</span>
+            </a>
+            <figcaption class="duo3-cap">
+              <span class="duo3-name duo3-name--em" data-i18n="duo.classique.n">Classique</span>
+              <span class="duo3-desc" data-i18n="duo.classique.d">Boiseries, dorures, parquets historiques</span>
+            </figcaption>
+          </figure>
+        </div>
       </div>
+
+      <div class="duo3-row">
+        <p class="duo3-step">— 02 / 03</p>
+        <p class="duo3-phrase" data-i18n="duo.phrase2">De l'intimité d'un salon au grand jardin à la française.</p>
+        <div class="duo3-grid">
+          <figure class="duo3-fig">
+            <a class="duo3-link" href="https://fastdev75.github.io/majestis_vitrine/Interieur.html">
+              <div class="duo3-img" style="background-image:url('assets/duo-interieur.jpg');"></div>
+              <span class="duo3-cta" data-i18n="duo.cta">Voir nos références</span>
+            </a>
+            <figcaption class="duo3-cap">
+              <span class="duo3-name" data-i18n="duo.interieur.n">Intérieur</span>
+              <span class="duo3-desc" data-i18n="duo.interieur.d">Escaliers, marbres, ferronneries</span>
+            </figcaption>
+          </figure>
+          <figure class="duo3-fig duo3-fig--offset">
+            <a class="duo3-link" href="https://fastdev75.github.io/majestis_vitrine/Exterieur.html">
+              <div class="duo3-img" style="background-image:url('assets/duo-exterieur.jpg');"></div>
+              <span class="duo3-cta" data-i18n="duo.cta">Voir nos références</span>
+            </a>
+            <figcaption class="duo3-cap">
+              <span class="duo3-name duo3-name--em" data-i18n="duo.exterieur.n">Extérieur</span>
+              <span class="duo3-desc" data-i18n="duo.exterieur.d">Façades, jardins, terrasses</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="duo3-row">
+        <p class="duo3-step">— 03 / 03</p>
+        <p class="duo3-phrase" data-i18n="duo.phrase3">Construire l'inédit, restaurer le rare.</p>
+        <div class="duo3-grid">
+          <figure class="duo3-fig">
+            <a class="duo3-link" href="https://fastdev75.github.io/majestis_vitrine/Creation%20sur%20Mesure.html">
+              <div class="duo3-img" style="background-image:url('assets/duo-realisation.jpg');"></div>
+              <span class="duo3-cta" data-i18n="duo.cta">Voir nos références</span>
+            </a>
+            <figcaption class="duo3-cap">
+              <span class="duo3-name" data-i18n="duo.realisation.n">Réalisation</span>
+              <span class="duo3-desc" data-i18n="duo.realisation.d">Projets neufs, architecture contemporaine</span>
+            </figcaption>
+          </figure>
+          <figure class="duo3-fig duo3-fig--offset">
+            <a class="duo3-link" href="https://fastdev75.github.io/majestis_vitrine/Renovation%20Authentique.html">
+              <div class="duo3-img" style="background-image:url('assets/duo-renovation.jpg');"></div>
+              <span class="duo3-cta" data-i18n="duo.cta">Voir nos références</span>
+            </a>
+            <figcaption class="duo3-cap">
+              <span class="duo3-name duo3-name--em" data-i18n="duo.renovation.n">Rénovation</span>
+              <span class="duo3-desc" data-i18n="duo.renovation.d">Patrimoine restauré dans les règles de l'art</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1094,6 +1112,16 @@
         "nav.contact.join": "Nous rejoindre",
         "real.title": "Nos Réalisations",
         "real.sub": "Trois univers, trois manières de transcender le patrimoine\u00a0: intérieurs d'exception, extérieurs et façades, décoration & finition.",
+        "duo.cta": "Voir nos références",
+        "duo.phrase1": "De l'épure minimaliste à la grammaire classique française.",
+        "duo.phrase2": "De l'intimité d'un salon au grand jardin à la française.",
+        "duo.phrase3": "Construire l'inédit, restaurer le rare.",
+        "duo.contemporain.n": "Contemporain", "duo.contemporain.d": "Lignes pures, matières contemporaines",
+        "duo.classique.n": "Classique", "duo.classique.d": "Boiseries, dorures, parquets historiques",
+        "duo.interieur.n": "Intérieur", "duo.interieur.d": "Escaliers, marbres, ferronneries",
+        "duo.exterieur.n": "Extérieur", "duo.exterieur.d": "Façades, jardins, terrasses",
+        "duo.realisation.n": "Réalisation", "duo.realisation.d": "Projets neufs, architecture contemporaine",
+        "duo.renovation.n": "Rénovation", "duo.renovation.d": "Patrimoine restauré dans les règles de l'art",
         "voc.eyebrow": "Vocation",
         "voc.s1": "L'excellence artisanale",
         "voc.s2": "au service des projets les plus ambitieux.",
@@ -1160,6 +1188,16 @@
         "nav.contact.join": "Join us",
         "real.title": "Our Projects",
         "real.sub": "Three worlds, three ways to transcend heritage: exceptional interiors, exteriors and façades, decoration & finish.",
+        "duo.cta": "View our references",
+        "duo.phrase1": "From minimalist purity to the French classical grammar.",
+        "duo.phrase2": "From the intimacy of a salon to the grand French garden.",
+        "duo.phrase3": "Building the unprecedented, restoring the rare.",
+        "duo.contemporain.n": "Contemporary", "duo.contemporain.d": "Pure lines, contemporary materials",
+        "duo.classique.n": "Classic", "duo.classique.d": "Panelling, gilding, historic parquet",
+        "duo.interieur.n": "Interior", "duo.interieur.d": "Staircases, marble, ironwork",
+        "duo.exterieur.n": "Exterior", "duo.exterieur.d": "Façades, gardens, terraces",
+        "duo.realisation.n": "New build", "duo.realisation.d": "New projects, contemporary architecture",
+        "duo.renovation.n": "Renovation", "duo.renovation.d": "Heritage restored to the highest standards",
         "voc.eyebrow": "Vocation",
         "voc.s1": "Artisanal excellence",
         "voc.s2": "in the service of the most ambitious projects.",
@@ -1258,14 +1296,6 @@
           <li><a href="Histoire.html"><span data-i18n="nav.group.histoire">Histoire</span></a></li>
           <li><a href="Valeurs.html"><span data-i18n="nav.group.valeurs">Valeurs</span></a></li>
           <li><a href="Expertise.html"><span data-i18n="nav.group.expertise">Expertise</span></a></li>
-        </ul>
-      </li>
-      <li class="md-item">
-        <button class="md-link" type="button"><span data-i18n="nav.real">Nos Réalisations</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>
-        <ul class="md-sub">
-          <li><a href="Interieur.html">Intérieur</a></li>
-          <li><a href="Exterieur.html">Extérieur</a></li>
-          <li><a href="Decoration et Finition.html">Décoration &amp; Finition</a></li>
         </ul>
       </li>
       <li class="md-item"><a class="md-link" href="Art des Metiers.html"><span data-i18n="nav.art">L'Art des Métiers</span></a></li>
