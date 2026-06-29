@@ -886,6 +886,708 @@
   .dropdown--real a.dropdown-eyebrow:hover { color: var(--gold-soft); }
   .dropdown--real ul a { font-size: 16px; padding: 7px 0; }
 </style>
+<style>
+/* ===== SECTIONS LANDING (extrait des pages sources) ===== */
+  /* ---------- Page hero ---------- */
+  .page-hero {
+    position: relative; z-index: 1;
+    padding: 220px 56px 40px;
+    text-align: center;
+  }
+  .breadcrumb {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Jost', sans-serif; font-size: 10.5px;
+    letter-spacing: 0.34em; text-transform: uppercase;
+    color: rgba(244,237,224,0.6);
+    margin-bottom: 28px;
+  }
+  .breadcrumb a { color: rgba(244,237,224,0.6); text-decoration: none; transition: color .25s ease; }
+  .breadcrumb a:hover { color: var(--gold-soft); }
+  .breadcrumb .sep { color: var(--gold-1); }
+  .breadcrumb .here { color: var(--gold-1); }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 4.4vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.005em;
+    color: var(--ivory);
+    text-wrap: balance;
+    margin-bottom: 22px;
+  }
+  .page-title em {
+    font-style: italic; font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 12s ease-in-out infinite;
+    filter: drop-shadow(0 0 22px rgba(212,157,62,0.35));
+  }
+  @keyframes shimmer {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .page-rule {
+    display: block; width: 1px; height: 56px;
+    background: linear-gradient(to bottom, transparent, var(--gold-1));
+    margin: 36px auto 0;
+  }
+
+  /* ---------- NOUS section ---------- */
+  .nous {
+    position: relative; z-index: 1;
+    padding: 30px 56px 120px;
+    max-width: 1480px;
+    margin: 0 auto;
+  }
+  .nous-head {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .nous-eyebrow {
+    display: inline-flex; align-items: center; gap: 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-1);
+  }
+  .nous-eyebrow::before, .nous-eyebrow::after {
+    content: ""; width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-1), transparent);
+  }
+  .nous-eyebrow em {
+    font-style: normal;
+    font-size: 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    background: var(--gold-gradient);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    background-size: 220% 100%;
+    animation: shimmer 12s ease-in-out infinite;
+  }
+  .nous-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(17px, 1.3vw, 21px);
+    color: rgba(244,237,224,0.72);
+    max-width: 640px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+    text-wrap: balance;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+  .member {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .member-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: rgba(217,184,106,0.05);
+    border: 1px solid rgba(217,184,106,0.18);
+    isolation: isolate;
+  }
+  .member-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(12,17,50,0) 60%, rgba(12,17,50,0.45) 100%);
+    pointer-events: none;
+  }
+  .member-photo .img {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center top;
+    filter: grayscale(100%) contrast(1.04);
+    transition: filter 1s ease, transform 1.4s cubic-bezier(.2,.7,.2,1);
+  }
+  .member:hover .member-photo .img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.04);
+  }
+  /* gold frame on hover */
+  .member-photo .frame {
+    position: absolute; inset: 14px;
+    border: 1px solid rgba(217,184,106,0);
+    pointer-events: none; z-index: 2;
+    transition: border-color .5s ease, inset .5s ease;
+  }
+  .member:hover .member-photo .frame {
+    border-color: rgba(217,184,106,0.55);
+    inset: 18px;
+  }
+
+  .member-info {
+    padding-top: 22px;
+    display: flex; flex-direction: column;
+    align-items: center;
+  }
+  .member-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(22px, 1.9vw, 32px);
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+  .member-name .last {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-left: 8px;
+    filter: drop-shadow(0 0 14px rgba(212,157,62,0.25));
+  }
+  .member-desc {
+    margin-top: 18px;
+    padding: 0 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 1.7vw, 28px);
+    line-height: 1.55;
+    color: rgba(244,237,224,0.95);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 980px) {
+    body > header { padding: 12px 20px 0; gap: 14px; }
+    nav.primary { display: none; }
+    .brand-logo { width: 64px; height: 64px; }
+    .back-link { top: 96px; left: 18px; font-size: 9.5px; letter-spacing: 0.3em; }
+    .page-hero { padding: 160px 24px 30px; }
+    .nous { padding: 20px 24px 90px; }
+    .team-grid { grid-template-columns: 1fr; gap: 40px; }
+    .histoire { padding: 60px 24px 120px; }
+  }
+
+  /* ---------- Notre Histoire / Nos Valeurs ---------- */
+  .histoire {
+    position: relative; z-index: 1;
+    padding: 60px 56px 100px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .essay {
+    display: block;
+    padding: 60px 0;
+  }
+  .essay + .essay {
+    border-top: 1px solid rgba(217,184,106,0.18);
+    padding-top: 60px;
+  }
+  .essay.reverse { text-align: right; }
+  .essay:not(.reverse) { text-align: left; }
+
+  .essay-title-block {
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .essay.reverse .essay-title-block { align-items: flex-end; }
+
+  .essay-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 2.6vw, 40px);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--ivory);
+  }
+  .essay-title em {
+    font-style: italic; font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 12s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(212,157,62,0.3));
+    margin-right: 8px;
+  }
+  .essay-rule {
+    width: 44px; height: 1px;
+    background: var(--gold-1);
+    margin-top: 18px;
+  }
+
+  .essay-quote {
+    position: relative;
+    padding: 0;
+    max-width: 880px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .essay.reverse .essay-quote { margin-left: auto; }
+  .essay-quote .qmark {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(48px, 4.4vw, 64px);
+    line-height: 1;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+    padding: 0 8px;
+    height: 0.7em;
+    overflow: visible;
+  }
+  .essay-quote .qmark.open {
+    align-self: flex-start;
+    margin-bottom: 14px;
+  }
+  .essay-quote .qmark.close {
+    align-self: flex-end;
+    margin-top: 14px;
+  }
+  .essay-quote.brackets .qmark { font-style: normal; }
+  .essay-quote.brackets .qmark.open { top: -10px; left: -6px; }
+  .essay-quote.brackets .qmark.close { bottom: -34px; right: -6px; }
+
+  .essay-text + .essay-text { margin-top: 1em; }
+  .essay-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 1.7vw, 28px);
+    line-height: 1.65;
+    color: rgba(244,237,224,0.9);
+    text-wrap: pretty;
+  }
+  .essay.reverse .essay-text { text-align: right; }
+  .essay-text .firstcap {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.4em;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    padding-right: 2px;
+    filter: drop-shadow(0 0 14px rgba(212,157,62,0.3));
+  }
+
+  @media (max-width: 900px) {
+    .histoire { padding: 40px 24px 90px; }
+    .essay, .essay.reverse { text-align: left; padding: 36px 0; }
+    .essay.reverse .essay-title-block { align-items: flex-start; }
+    .essay.reverse .essay-quote { margin-left: 0; }
+    .essay.reverse .essay-text { text-align: left; }
+    .essay-quote { padding: 8px 40px; }
+    .essay + .essay .essay-title-block,
+    .essay + .essay .essay-quote { margin-left: 0; }
+  }
+  .page-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 1.4vw, 22px);
+    color: rgba(244,237,224,0.78);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+  .page-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold-1);
+    margin-bottom: 22px;
+    display: inline-flex; align-items: center; gap: 14px;
+  }
+  .page-eyebrow::before,
+  .page-eyebrow::after {
+    content: "";
+    width: 32px; height: 1px;
+    background: var(--gold-1);
+    opacity: 0.6;
+  }
+  .contact-wrap {
+    position: relative; z-index: 1;
+    padding: 60px clamp(24px, 4vw, 64px) 140px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(48px, 6vw, 96px);
+    align-items: center;
+  }
+  .contact-card {
+    position: relative;
+    padding: clamp(36px, 4vw, 56px);
+    background: linear-gradient(180deg, rgba(217,184,106,0.06), rgba(217,184,106,0.02));
+    border: 1px solid rgba(217,184,106,0.22);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 28px;
+  }
+  .contact-card::before,
+  .contact-card::after {
+    content: "";
+    position: absolute;
+    width: 22px; height: 22px;
+    border: 1px solid var(--gold-1);
+    opacity: 0.7;
+  }
+  .contact-card::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+  .contact-card::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+  .contact-portrait {
+    width: clamp(180px, 18vw, 240px);
+    height: clamp(180px, 18vw, 240px);
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35), 0 0 0 1px rgba(217,184,106,0.4);
+  }
+  .contact-name-block { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .contact-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold-1);
+    margin: 0;
+  }
+  .contact-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 2.6vw, 40px);
+    line-height: 1.1;
+    margin: 4px 0 2px;
+    letter-spacing: -0.005em;
+    color: var(--ivory);
+  }
+  .contact-name em {
+    font-style: italic; font-weight: 500;
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 12s ease-in-out infinite;
+  }
+  .contact-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.15vw, 19px);
+    color: rgba(244,237,224,0.7);
+    margin: 0;
+  }
+  .contact-mail-btn {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--gold-gradient);
+    background-size: 220% 100%;
+    padding: 16px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 6px 22px rgba(212,157,62,0.28);
+    transition: background-position .6s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .contact-mail-btn .arr { transition: transform .35s ease; }
+  .contact-mail-btn:hover {
+    background-position: 100% 50%;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212,157,62,0.4);
+  }
+  .contact-mail-btn:hover .arr { transform: translateX(6px); }
+
+  .contact-info {
+    display: flex; flex-direction: column;
+    gap: 36px;
+  }
+  .info-block {
+    border-top: 1px solid rgba(217,184,106,0.22);
+    padding-top: 22px;
+  }
+  .info-block:first-child {
+    border-top: 0; padding-top: 0;
+  }
+  .info-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold-1);
+    margin: 0 0 12px;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .info-label::before {
+    content: ""; width: 28px; height: 1px;
+    background: var(--gold-1); opacity: 0.6;
+  }
+  .info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(22px, 1.8vw, 28px);
+    line-height: 1.5;
+    color: var(--ivory);
+    margin: 0;
+  }
+  .info-value a {
+    color: var(--ivory);
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--gold-1), var(--gold-1));
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size .35s ease, color .25s ease;
+    padding-bottom: 2px;
+  }
+  .info-value a:hover {
+    color: var(--gold-soft);
+    background-size: 100% 1px;
+  }
+
+  @media (max-width: 980px) {
+    body > header { padding: 12px 20px 0; gap: 14px; }
+    nav.primary { display: none; }
+    .brand-logo { width: 64px; height: 64px; }
+    .page-hero { padding: 160px 24px 40px; }
+    .duo { padding: 20px 24px 90px; }
+    .duo-grid { grid-template-columns: 1fr; gap: 24px; }
+    .contact-wrap { padding: 30px 24px 90px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .exp-intro { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; padding: 6px clamp(24px,5vw,56px) 0; text-align: center; }
+  .exp-lead { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(28px, 3.2vw, 46px); line-height: 1.14; color: var(--ivory); text-wrap: balance; margin-bottom: 22px; }
+  .exp-lead em { font-style: italic; font-weight: 600; background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .exp-intro p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(19px, 1.55vw, 25px); line-height: 1.62; color: rgba(244,237,224,0.9); text-wrap: pretty; }
+  .exp-grid { position: relative; z-index: 1; max-width: 1300px; margin: clamp(48px,6vw,80px) auto 0; padding: 0 clamp(24px,4vw,56px) clamp(90px,10vw,140px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px,1.6vw,24px); }
+  .exp-item { background: rgba(217,184,106,0.04); border: 1px solid rgba(217,184,106,0.18); padding: clamp(30px,3vw,46px) clamp(24px,2.4vw,40px); display: flex; flex-direction: column; transition: background .35s ease, border-color .35s ease; }
+  .exp-item:hover { background: rgba(217,184,106,0.09); border-color: rgba(217,184,106,0.5); }
+  .exp-num { font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.32em; color: var(--gold-1); margin-bottom: 22px; display: inline-flex; align-items: center; gap: 12px; }
+  .exp-num::before { content: ""; width: 28px; height: 1px; background: var(--gold-1); }
+  .exp-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(22px, 1.7vw, 27px); line-height: 1.2; color: var(--ivory); margin-bottom: 16px; }
+  .exp-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 1.2vw, 20px); line-height: 1.55; color: rgba(244,237,224,0.82); }
+  @media (max-width: 980px) { .exp-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .exp-grid { grid-template-columns: 1fr; } }
+  .join-form {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .join-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .field-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold-1);
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .field-label::before {
+    content: ""; width: 28px; height: 1px;
+    background: var(--gold-1); opacity: 0.6;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.35vw, 22px);
+    line-height: 1.5;
+    color: var(--ivory);
+    background: rgba(8,11,22,0.35);
+    border: 1px solid rgba(217,184,106,0.22);
+    padding: 14px 18px;
+    transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(244,237,224,0.4);
+    font-style: italic;
+  }
+  .field input:hover,
+  .field select:hover,
+  .field textarea:hover {
+    border-color: rgba(217,184,106,0.5);
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--gold-1);
+    background: rgba(8,11,22,0.55);
+    box-shadow: 0 0 0 1px rgba(217,184,106,0.4), 0 6px 22px rgba(212,157,62,0.12);
+  }
+  .field select {
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--gold-1) 50%),
+      linear-gradient(135deg, var(--gold-1) 50%, transparent 50%);
+    background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 44px;
+  }
+  .field select option {
+    background: #0c1132;
+    color: var(--ivory);
+  }
+
+  /* file input */
+  .file-control {
+    position: relative;
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    padding: 14px 18px;
+    background: rgba(8,11,22,0.35);
+    border: 1px dashed rgba(217,184,106,0.35);
+    transition: border-color .3s ease, background .3s ease;
+  }
+  .file-control:hover { border-color: var(--gold-1); }
+  .file-control input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+    width: 100%; height: 100%;
+  }
+  .file-chip {
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-1);
+    border: 1px solid rgba(217,184,106,0.4);
+    padding: 8px 14px;
+    border-radius: 999px;
+  }
+  .file-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(244,237,224,0.78);
+    font-size: 18px;
+  }
+
+  /* checkbox */
+  .check {
+    display: flex; gap: 14px; align-items: flex-start;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(244,237,224,0.78);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .check input {
+    appearance: none; -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border: 1px solid rgba(217,184,106,0.4);
+    background: rgba(8,11,22,0.4);
+    margin-top: 4px;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color .25s ease, background .25s ease;
+  }
+  .check input:checked {
+    background: var(--gold-gradient);
+    border-color: var(--gold-1);
+  }
+  .check input:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 5px; height: 10px;
+    border-right: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    transform: rotate(45deg);
+  }
+
+  .join-submit { display: flex; justify-content: flex-start; padding-top: 8px; }
+  .join-confirm {
+    margin: 8px 0 0;
+    padding: 16px 20px;
+    border: 1px solid rgba(217,184,106,0.45);
+    background: rgba(217,184,106,0.06);
+    color: var(--gold-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .join-confirm.is-error {
+    border-color: rgba(255,140,140,0.5);
+    background: rgba(255,140,140,0.08);
+    color: #ffd0c8;
+  }
+
+  @media (max-width: 980px) {
+    body > header { padding: 12px 20px 0; gap: 14px; }
+    nav.primary { display: none; }
+    .brand-logo { width: 64px; height: 64px; }
+    .page-hero { padding: 160px 24px 40px; }
+    .duo { padding: 20px 24px 90px; }
+    .duo-grid { grid-template-columns: 1fr; gap: 24px; }
+    .contact-wrap { padding: 30px 24px 90px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .join-row { grid-template-columns: 1fr; gap: 22px; }
+    .join-form { gap: 24px; }
+  }
+
+  /* ---- Landing : ancres + en-têtes de section ---- */
+  .section-anchor { scroll-margin-top: 96px; }
+  .sec { position: relative; z-index: 1; }
+  .sec-head { text-align: center; padding: clamp(72px,8vw,116px) clamp(24px,5vw,56px) 6px; }
+  .sec-head .page-eyebrow { margin-bottom: 20px; }
+  .sec-head .page-title { margin-bottom: 16px; }
+  .sec-head .page-sub { margin-top: 8px; }
+  .sec-head .page-rule { margin: 28px auto 0; }
+  .nav-link.is-active { color: var(--gold-1); }
+  #groupe .nous { padding-top: 8px; }
+  #histoire .histoire, #valeurs .histoire { padding-top: 6px; }
+  #expertise .exp-intro { padding-top: 0; }
+  #contact .contact-wrap, #rejoindre .contact-wrap { padding-top: 22px; }
+
+</style>
 </head>
 <body>
 
@@ -895,48 +1597,10 @@
     <span class="brand" aria-hidden="true"></span>
 
     <nav class="primary" aria-label="Navigation principale">
-      <div class="nav-item">
-        <a class="nav-link" href="Home.html">
-          <span data-i18n="nav.home">Accueil</span>
-        </a>
-      </div>
-
-      <div class="nav-item">
-        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
-          <span data-i18n="nav.group">Le Groupe</span>
-          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
-        </button>
-        <div class="dropdown" role="menu">
-          <div class="dropdown-eyebrow" data-i18n="nav.group.eyebrow">La Maison</div>
-          <ul>
-            <li><a href="Portrait.html"><span class="dot"></span><span data-i18n="nav.group.portrait">Portrait</span><span class="arrow">&#8594;</span></a></li>
-            <li><a href="Histoire.html"><span class="dot"></span><span data-i18n="nav.group.histoire">Histoire</span><span class="arrow">&#8594;</span></a></li>
-            <li><a href="Valeurs.html"><span class="dot"></span><span data-i18n="nav.group.valeurs">Valeurs</span><span class="arrow">&#8594;</span></a></li>
-            <li><a href="Expertise.html"><span class="dot"></span><span data-i18n="nav.group.expertise">Expertise</span><span class="arrow">&#8594;</span></a></li>
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="nav-item">
-        <a class="nav-link" href="Art des Metiers.html">
-          <span data-i18n="nav.art">L'Art des Métiers</span>
-        </a>
-      </div>
-
-      <div class="nav-item">
-        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
-          <span data-i18n="nav.contact">Nous contacter</span>
-          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg>
-        </button>
-        <div class="dropdown" role="menu">
-          <div class="dropdown-eyebrow" data-i18n="nav.contact.eyebrow">Entrer en relation</div>
-          <ul>
-            <li><a href="Contact.html"><span class="dot"></span><span data-i18n="nav.contact.client">Parler de notre projet</span><span class="arrow">&#8594;</span></a></li>
-            <li><a href="Nous Rejoindre.html"><span class="dot"></span><span data-i18n="nav.contact.join">Nous rejoindre</span><span class="arrow">&#8594;</span></a></li>
-          </ul>
-        </div>
-      </div>
+      <div class="nav-item"><a class="nav-link" href="#accueil"><span data-i18n="nav.home">Accueil</span></a></div>
+      <div class="nav-item"><a class="nav-link" href="#groupe"><span data-i18n="nav.group">Le Groupe</span></a></div>
+      <div class="nav-item"><a class="nav-link" href="#expertise"><span data-i18n="nav.expertise">Expertise</span></a></div>
+      <div class="nav-item"><a class="nav-link" href="#contact"><span data-i18n="nav.contact">Nous contacter</span></a></div>
     </nav>
 
     <div class="lang">
@@ -948,7 +1612,7 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero" id="accueil">
     <div class="stage" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
     <div class="frame-top"></div>
@@ -965,7 +1629,6 @@
         <span class="gilt" data-i18n="hero.t1">Majestis</span>
       </h1>
       <p class="hero-eyebrow2" data-i18n="hero.eyebrow2">Maîtrise d'œuvre des réalisations d'exception</p>
-      <p class="hero-sub" data-i18n="hero.sub">Découvrez les réalisations du réseau des 72 partenaires Majestis, chacun maîtrisant une compétence artisanale d'excellence, coordonnés par Benoît DROUIN, compagnon du Devoir et Geoffroy BIGO ingénieur ESTP.</p>
       </div>
     </div>
 
@@ -1078,6 +1741,255 @@
     </div>
   </section>
 
+
+  <!-- ============== LE GROUPE ============== -->
+  <section class="section-anchor sec" id="groupe">
+    <div class="sec-head">
+      <span class="page-eyebrow" data-i18n="grp.eyebrow">La Maison</span>
+      <h2 class="page-title"><span data-i18n="grp.t1">Le</span> <em data-i18n="grp.t2">Groupe</em></h2>
+      <span class="page-rule" aria-hidden="true"></span>
+    </div>
+    <section class="nous">
+      <p class="nous-intro" data-i18n="nous.intro">Trois regards complémentaires, une même exigence, l'amour du beau geste, du détail juste, du patrimoine vivant.</p>
+    <div class="team-grid">
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-benoit.png');"></div>
+          <div class="frame"></div>
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Benoît <span class="last">DROUIN</span></h3>
+          <p class="member-desc" data-i18n="bio.benoit">Benoît Drouin a débuté à seize ans comme apprenti maçon et tailleur de pierre chez les Compagnons du Devoir, se formant sur des chantiers emblématiques et pilotant des projets d'envergure comme Villers-Cotterêts, Versailles, le Louvre, les Invalides, et la flèche de Notre-Dame de Paris, avec une clientèle internationale exigeante (Émirats, USA).</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-geoffroy.png');"></div>
+          <div class="frame"></div>
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Geoffroy <span class="last">BIGO</span></h3>
+          <p class="member-desc" data-i18n="bio.geoffroy">Geoffroy Bigo accompagne depuis de nombreuses années les acteurs du patrimoine, du luxe et de la tradition. Son expertise des métiers d'art et sa connaissance fine des écosystèmes d'artisans permettent de mobiliser les talents les plus rares pour chaque chantier d'exception, dans le respect absolu des matériaux d'origine et des exigences patrimoniales.</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">
+          <div class="img" style="background-image:url('assets/team-stephanie.png');"></div>
+          <div class="frame"></div>
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">Stéphanie <span class="last">REDONDO</span></h3>
+          <p class="member-desc" data-i18n="bio.stephanie">Après une carrière dans de grands groupes (Nexity, Groupe Bertrand, EOL, Coreal) et des cabinets prestigieux comme FRANC Architecture, Stéphanie garantit une communication fluide, une prise de décision rapide et une cohérence parfaite entre les différents métiers.</p>
+        </div>
+      </article>
+    </div>
+    </section>
+  </section>
+
+  <!-- ============== NOTRE HISTOIRE ============== -->
+  <section class="section-anchor sec" id="histoire">
+    <div class="sec-head">
+      <span class="page-eyebrow" data-i18n="hist.eyebrow">Notre parcours</span>
+      <h2 class="page-title"><span data-i18n="hist.t1">Notre</span> <em data-i18n="hist.t2">Histoire</em></h2>
+      <span class="page-rule" aria-hidden="true"></span>
+    </div>
+    <div class="histoire">
+    <div class="essay">
+      <blockquote class="essay-quote">
+        <span class="qmark open" aria-hidden="true">“</span>
+        <div data-i18n="hist.body">
+          <p class="essay-text"><span class="firstcap">L</span>e Groupe Majestis est né de la volonté de réunir excellence technique, culture architecturale et accompagnement haut de gamme. Issu de l'expérience de professionnels de l'architecture, de la rénovation d'exception et de l'immobilier, le groupe développe une approche exigeante du bâti. Nous intervenons sur des actifs résidentiels, tertiaires et patrimoniaux avec une vision globale et contemporaine.</p>
+          <p class="essay-text">Chaque projet est pensé comme une réalisation unique, alliant précision, cohérence et maîtrise technique. Inspiré par l'élégance du patrimoine parisien, le Groupe Majestis préserve l'identité des lieux tout en les sublimant durablement. Notre exigence s'exprime dans le choix des matériaux, la qualité d'exécution et le soin porté aux finitions.</p>
+          <p class="essay-text">Nous accordons une attention particulière au respect des délais, des budgets et des attentes de nos clients. Au-delà de la rénovation, nous défendons une vision du luxe sobre, élégante et maîtrisée. Nous accompagnons architectes, investisseurs, syndics et propriétaires privés dans leurs projets les plus exigeants. Aujourd'hui, le Groupe Majestis s'impose comme un partenaire de confiance dans la valorisation d'actifs d'exception.</p>
+        </div>
+        <span class="qmark close" aria-hidden="true">”</span>
+      </blockquote>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============== NOS VALEURS ============== -->
+  <section class="section-anchor sec" id="valeurs">
+    <div class="sec-head">
+      <span class="page-eyebrow" data-i18n="val.eyebrow">Ce qui nous guide</span>
+      <h2 class="page-title"><span data-i18n="val.t1">Nos</span> <em data-i18n="val.t2">Valeurs</em></h2>
+      <span class="page-rule" aria-hidden="true"></span>
+    </div>
+    <div class="histoire">
+      <div class="essay">
+        <blockquote class="essay-quote">
+          <span class="qmark open" aria-hidden="true">“</span>
+          <div data-i18n="val.body"><p class='essay-text'><span class='firstcap'>N</span>os valeurs reposent avant tout sur l'exigence, la précision et le respect des engagements pris auprès de nos clients et partenaires. Nous défendons une approche où la qualité d'exécution, la maîtrise technique et le sens du détail occupent une place centrale.</p><p class='essay-text'>Attaché au patrimoine architectural et à l'élégance des ouvrages, le Groupe Majestis veille à préserver l'identité des lieux tout en les valorisant durablement. Nous croyons en une vision du luxe sobre et intemporelle, fondée sur la noblesse des matériaux, la cohérence esthétique et la pérennité des réalisations.</p><p class='essay-text'>La confiance, la transparence et l'écoute constituent le socle de chacune de nos collaborations. Notre force réside également dans notre capacité à coordonner des savoir-faire complémentaires autour d'un même niveau d'excellence. Chaque projet est conduit avec le même engagement, qu'il s'agisse d'un actif patrimonial, résidentiel ou tertiaire. Le Groupe Majestis porte ainsi une vision à la fois contemporaine, institutionnelle et profondément humaine de la rénovation haut de gamme.</p></div>
+          <span class="qmark close" aria-hidden="true">”</span>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== NOTRE EXPERTISE ============== -->
+  <section class="section-anchor sec" id="expertise">
+    <div class="sec-head">
+      <span class="page-eyebrow" data-i18n="exp.eyebrow">Savoir-faire</span>
+      <h2 class="page-title"><span data-i18n="exp.pre">Notre</span> <em data-i18n="exp.em">Expertise</em></h2>
+      <span class="page-rule" aria-hidden="true"></span>
+    </div>
+  <section class="exp-intro">
+    <h2 class="exp-lead" data-i18n="exp.lead">Une organisation pensée pour <em>les projets rares</em>.</h2>
+    <p data-i18n="exp.intro">Dans des projets complexes, la multiplication des intervenants est souvent source d'incertitude. Majestis simplifie et sécurise chaque opération.</p>
+  </section>
+
+  <!-- Les 6 piliers -->
+  <section class="exp-grid">
+    <article class="exp-item">
+      <span class="exp-num">01</span>
+      <h3 class="exp-title" data-i18n="exp.1.t">Conception &amp; coordination technique</h3>
+      <p class="exp-text" data-i18n="exp.1.p">Traduire la vision de l'architecte en exécution maîtrisée, du plan au détail constructif.</p>
+    </article>
+    <article class="exp-item">
+      <span class="exp-num">02</span>
+      <h3 class="exp-title" data-i18n="exp.2.t">Pilotage des corps d'état d'excellence</h3>
+      <p class="exp-text" data-i18n="exp.2.p">Sélection rigoureuse et orchestration des meilleurs artisans d'art français.</p>
+    </article>
+    <article class="exp-item">
+      <span class="exp-num">03</span>
+      <h3 class="exp-title" data-i18n="exp.3.t">Gestion des délais et des budgets</h3>
+      <p class="exp-text" data-i18n="exp.3.p">Une rigueur d'orfèvre appliquée au planning et à l'économie du chantier.</p>
+    </article>
+    <article class="exp-item">
+      <span class="exp-num">04</span>
+      <h3 class="exp-title" data-i18n="exp.4.t">Contrôle qualité permanent</h3>
+      <p class="exp-text" data-i18n="exp.4.p">Une exigence constante à chaque étape, jusqu'au moindre geste de finition.</p>
+    </article>
+    <article class="exp-item">
+      <span class="exp-num">05</span>
+      <h3 class="exp-title" data-i18n="exp.5.t">Interlocuteur unique</h3>
+      <p class="exp-text" data-i18n="exp.5.p">Un point de contact responsable de l'ensemble de la maîtrise d'œuvre.</p>
+    </article>
+    <article class="exp-item">
+      <span class="exp-num">06</span>
+      <h3 class="exp-title" data-i18n="exp.6.t">Maîtrise des projets complexes</h3>
+      <p class="exp-text" data-i18n="exp.6.p">Patrimoine classé, intérieurs de collection, hôtels particuliers, résidences d'exception.</p>
+    </article>
+  </section>
+  </section>
+
+  <!-- ============== NOUS CONTACTER ============== -->
+  <section class="section-anchor sec" id="contact">
+    <div class="sec-head">
+      <span class="page-eyebrow" data-i18n="con.eyebrow">Contact</span>
+      <h2 class="page-title"><span data-i18n="con.t1">Parler de</span> <em data-i18n="con.t2">votre projet.</em></h2>
+      <p class="page-sub" data-i18n="con.sub">Chaque rencontre commence par une conversation. Nous étudions votre projet en confidentialité, et vous remettons une lecture technique et stratégique sous quinze jours.</p>
+      <span class="page-rule" aria-hidden="true"></span>
+    </div>
+  <section class="contact-wrap">
+    <div class="contact-grid">
+      <aside class="contact-card">
+        <div class="contact-portrait" style="background-image:url('assets/team-stephanie.png');" role="img" aria-label="Stéphanie Redondo"></div>
+        <div class="contact-name-block">
+          <p class="contact-eyebrow" data-i18n="contact.write">Écrire à</p>
+          <h2 class="contact-name">Stéphanie <em>Redondo</em></h2>
+          <p class="contact-role" data-i18n="contact.role">Directrice grands comptes</p>
+        </div>
+        <a class="contact-mail-btn" href="mailto:s.redondo@groupe-majestis.fr">
+          <span data-i18n="contact.cta">Écrire à Stéphanie</span>
+          <span class="arr" aria-hidden="true">→</span>
+        </a>
+      </aside>
+
+      <div class="contact-info">
+        <div class="info-block">
+          <p class="info-label" data-i18n="info.addr">Adresse</p>
+          <p class="info-value">
+            Majestis<br/>
+            20 avenue Mac Mahon<br/>
+            75017 Paris
+          </p>
+        </div>
+        <div class="info-block">
+          <p class="info-label" data-i18n="info.phone">Téléphone</p>
+          <p class="info-value"><a href="tel:+33635553104">+33 6 35 55 31 04</a></p>
+        </div>
+        <div class="info-block">
+          <p class="info-label" data-i18n="info.email">Email</p>
+          <p class="info-value"><a href="mailto:s.redondo@groupe-majestis.fr">s.redondo@groupe-majestis.fr</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <!-- ============== NOUS REJOINDRE ============== -->
+  <section class="section-anchor sec" id="rejoindre">
+    <div class="sec-head">
+      <span class="page-eyebrow" data-i18n="join.eyebrow">Carrières</span>
+      <h2 class="page-title"><span data-i18n="join.t1">Nous</span> <em data-i18n="join.t2">rejoindre.</em></h2>
+      <p class="page-sub" data-i18n="join.sub">Vous êtes artisan, compagnon, chargé d'affaires ou diplomé des métiers d'art ? Adressez-nous votre candidature : chaque profil est étudié avec attention et nous vous répondons sous quinze jours.</p>
+      <span class="page-rule" aria-hidden="true"></span>
+    </div>
+  <section class="contact-wrap">
+    <form class="join-form" id="joinForm" autocomplete="on" novalidate>
+      <div class="join-row">
+        <label class="field">
+          <span class="field-label" data-i18n="f.firstname">Prénom</span>
+          <input type="text" name="firstname" required />
+        </label>
+        <label class="field">
+          <span class="field-label" data-i18n="f.lastname">Nom</span>
+          <input type="text" name="lastname" required />
+        </label>
+      </div>
+      <div class="join-row">
+        <label class="field">
+          <span class="field-label" data-i18n="f.email">Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label class="field">
+          <span class="field-label" data-i18n="f.phone">Téléphone</span>
+          <input type="tel" name="phone" />
+        </label>
+      </div>
+      <label class="field">
+        <span class="field-label" data-i18n="f.role">Poste recherché</span>
+        <select name="role" required>
+          <option value="" disabled selected data-i18n="f.role.placeholder">Sélectionnez un métier…</option>
+          <option value="compagnon" data-i18n="f.role.compagnon">Compagnon — métiers de la pierre, du bois, du métal…</option>
+          <option value="chef-chantier" data-i18n="f.role.chef">Chef de chantier</option>
+          <option value="charge-affaires" data-i18n="f.role.charge">Chargé d'affaires</option>
+          <option value="conducteur" data-i18n="f.role.conducteur">Conducteur de travaux</option>
+          <option value="bureau-etudes" data-i18n="f.role.bet">Bureau d'études</option>
+          <option value="alternance" data-i18n="f.role.alternance">Alternance / stage</option>
+          <option value="autre" data-i18n="f.role.autre">Autre</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label" data-i18n="f.message">Votre message</span>
+        <textarea name="message" rows="6" placeholder="Parlez-nous de votre parcours, de vos savoir-faire et de ce qui vous porte vers Majestis…"></textarea>
+      </label>
+      <label class="field field-file">
+        <span class="field-label" data-i18n="f.cv">Joindre un CV (PDF, DOC — 10 Mo max)</span>
+        <div class="file-control">
+          <input type="file" name="cv" id="cvFile" accept=".pdf,.doc,.docx" />
+          <span class="file-chip" data-i18n="f.cv.choose">Choisir un fichier</span>
+          <span class="file-name" data-empty="Aucun fichier sélectionné">Aucun fichier sélectionné</span>
+        </div>
+      </label>
+      <label class="check">
+        <input type="checkbox" name="consent" required />
+        <span data-i18n="f.consent">J'accepte que mes informations soient utilisées pour le traitement de ma candidature.</span>
+      </label>
+      <div class="join-submit">
+        <button class="contact-mail-btn" type="submit">
+          <span data-i18n="f.submit">Envoyer ma candidature</span>
+          <span class="arr" aria-hidden="true">→</span>
+        </button>
+      </div>
+      <p class="join-confirm" role="status" aria-live="polite" hidden></p>
+    </form>
+  </section>
+  </section>
+
   <script>
     // ---------- i18n ----------
     const I18N = {
@@ -1151,6 +2063,58 @@
         "hero.eyebrow2": "Maîtrise d'œuvre des réalisations d'exception",
         "hero.sub": "Découvrez les réalisations du réseau des 72 partenaires Majestis, chacun maîtrisant une compétence artisanale d'excellence, coordonnés par Benoît DROUIN, compagnon du Devoir et Geoffroy BIGO ingénieur ESTP.",
         "hero.cta": "Découvrir la Maison",
+        "nav.expertise": "Expertise",
+        "grp.eyebrow": "La Maison", "grp.t1": "Le", "grp.t2": "Groupe",
+        "hist.eyebrow": "Notre parcours",
+        "val.eyebrow": "Ce qui nous guide",
+        "exp.eyebrow": "Savoir-faire",
+        "con.eyebrow": "Contact", "con.t1": "Parler de", "con.t2": "votre projet.",
+        "join.eyebrow": "Carrières", "join.t1": "Nous", "join.t2": "rejoindre.",
+        "bio.benoit": "Benoît Drouin a débuté à seize ans comme apprenti maçon et tailleur de pierre chez les Compagnons du Devoir, se formant sur des chantiers emblématiques et pilotant des projets d'envergure comme Villers-Cotterêts, Versailles, le Louvre, les Invalides, et la flèche de Notre-Dame de Paris, avec une clientèle internationale exigeante (Émirats, USA).",
+        "bio.geoffroy": "Geoffroy Bigo accompagne depuis de nombreuses années les acteurs du patrimoine, du luxe et de la tradition. Son expertise des métiers d'art et sa connaissance fine des écosystèmes d'artisans permettent de mobiliser les talents les plus rares pour chaque chantier d'exception, dans le respect absolu des matériaux d'origine et des exigences patrimoniales.",
+        "bio.stephanie": "Après une carrière dans de grands groupes (Nexity, Groupe Bertrand, EOL, Coreal) et des cabinets prestigieux comme FRANC Architecture, Stéphanie garantit une communication fluide, une prise de décision rapide et une cohérence parfaite entre les différents métiers.",
+        "hist.t1": "Notre",
+        "hist.t2": "Histoire",
+        "hist.body": "<p class='essay-text'><span class='firstcap'>L</span>e Groupe Majestis est né de la volonté de réunir excellence technique, culture architecturale et accompagnement haut de gamme. Issu de l'expérience de professionnels de l'architecture, de la rénovation d'exception et de l'immobilier, le groupe développe une approche exigeante du bâti. Nous intervenons sur des actifs résidentiels, tertiaires et patrimoniaux avec une vision globale et contemporaine.</p><p class='essay-text'>Chaque projet est pensé comme une réalisation unique, alliant précision, cohérence et maîtrise technique. Inspiré par l'élégance du patrimoine parisien, le Groupe Majestis préserve l'identité des lieux tout en les sublimant durablement. Notre exigence s'exprime dans le choix des matériaux, la qualité d'exécution et le soin porté aux finitions.</p><p class='essay-text'>Nous accordons une attention particulière au respect des délais, des budgets et des attentes de nos clients. Au-delà de la rénovation, nous défendons une vision du luxe sobre, élégante et maîtrisée. Nous accompagnons architectes, investisseurs, syndics et propriétaires privés dans leurs projets les plus exigeants. Aujourd'hui, le Groupe Majestis s'impose comme un partenaire de confiance dans la valorisation d'actifs d'exception.</p>",
+        "val.t1": "Nos",
+        "val.t2": "Valeurs",
+        "val.body": "<p class='essay-text'><span class='firstcap'>N</span>os valeurs reposent avant tout sur l'exigence, la précision et le respect des engagements pris auprès de nos clients et partenaires. Nous défendons une approche où la qualité d'exécution, la maîtrise technique et le sens du détail occupent une place centrale.</p><p class='essay-text'>Attaché au patrimoine architectural et à l'élégance des ouvrages, le Groupe Majestis veille à préserver l'identité des lieux tout en les valorisant durablement. Nous croyons en une vision du luxe sobre et intemporelle, fondée sur la noblesse des matériaux, la cohérence esthétique et la pérennité des réalisations.</p><p class='essay-text'>La confiance, la transparence et l'écoute constituent le socle de chacune de nos collaborations. Notre force réside également dans notre capacité à coordonner des savoir-faire complémentaires autour d'un même niveau d'excellence. Chaque projet est conduit avec le même engagement, qu'il s'agisse d'un actif patrimonial, résidentiel ou tertiaire. Le Groupe Majestis porte ainsi une vision à la fois contemporaine, institutionnelle et profondément humaine de la rénovation haut de gamme.</p>",
+        "nous.intro": "Trois regards complémentaires, une même exigence, l'amour du beau geste, du détail juste, du patrimoine vivant.",
+        "exp.pre": "Notre", "exp.em": "Expertise",
+        "exp.lead": "Une organisation pensée pour <em>les projets rares</em>.",
+        "exp.intro": "Dans des projets complexes, la multiplication des intervenants est souvent source d'incertitude. Majestis simplifie et sécurise chaque opération.",
+        "exp.1.t": "Conception & coordination technique", "exp.1.p": "Traduire la vision de l'architecte en exécution maîtrisée, du plan au détail constructif.",
+        "exp.2.t": "Pilotage des corps d'état d'excellence", "exp.2.p": "Sélection rigoureuse et orchestration des meilleurs artisans d'art français.",
+        "exp.3.t": "Gestion des délais et des budgets", "exp.3.p": "Une rigueur d'orfèvre appliquée au planning et à l'économie du chantier.",
+        "exp.4.t": "Contrôle qualité permanent", "exp.4.p": "Une exigence constante à chaque étape, jusqu'au moindre geste de finition.",
+        "exp.5.t": "Interlocuteur unique", "exp.5.p": "Un point de contact responsable de l'ensemble de la maîtrise d'œuvre.",
+        "exp.6.t": "Maîtrise des projets complexes", "exp.6.p": "Patrimoine classé, intérieurs de collection, hôtels particuliers, résidences d'exception.",
+        "con.sub": "Chaque rencontre commence par une conversation. Nous étudions votre projet en confidentialité, et vous remettons une lecture technique et stratégique sous quinze jours.",
+        "contact.write": "Écrire à",
+        "contact.role": "Directrice grands comptes",
+        "contact.cta": "Écrire à Stéphanie",
+        "info.addr": "Adresse",
+        "info.phone": "Téléphone",
+        "info.email": "Email",
+        "join.sub": "Vous êtes artisan, compagnon, chargé d'affaires ou diplomé des métiers d'art ? Adressez-nous votre candidature : chaque profil est étudié avec attention et nous vous répondons sous quinze jours.",
+        "f.firstname": "Prénom",
+        "f.lastname": "Nom",
+        "f.email": "Email",
+        "f.phone": "Téléphone",
+        "f.role": "Poste recherché",
+        "f.role.placeholder": "Sélectionnez un métier…",
+        "f.role.compagnon": "Compagnon — métiers de la pierre, du bois, du métal…",
+        "f.role.chef": "Chef de chantier",
+        "f.role.charge": "Chargé d'affaires",
+        "f.role.conducteur": "Conducteur de travaux",
+        "f.role.bet": "Bureau d'études",
+        "f.role.alternance": "Alternance / stage",
+        "f.role.autre": "Autre",
+        "f.message": "Votre message",
+        "f.cv": "Joindre un CV (PDF, DOC — 10 Mo max)",
+        "f.cv.choose": "Choisir un fichier",
+        "f.consent": "J'accepte que mes informations soient utilisées pour le traitement de ma candidature.",
+        "f.submit": "Envoyer ma candidature",
         "bottom.tagline": "— Verre, bois, métal et lumière",
         "bottom.studio": "Atelier & Studio — 12, rue de Rivoli, Paris Ier",
         "bottom.estd": "— Maison fondée en MCMVIII",
@@ -1227,6 +2191,58 @@
         "hero.eyebrow2": "Project management for exceptional achievements",
         "hero.sub": "Discover the work of the Majestis network, 72 partners, each mastering a craft of the highest excellence, coordinated by Benoît DROUIN, Compagnon du Devoir, and Geoffroy BIGO, engineer from ESTP.",
         "hero.cta": "Discover the Maison",
+        "nav.expertise": "Expertise",
+        "grp.eyebrow": "The House", "grp.t1": "The", "grp.t2": "House",
+        "hist.eyebrow": "Our journey",
+        "val.eyebrow": "What guides us",
+        "exp.eyebrow": "Know-how",
+        "con.eyebrow": "Contact", "con.t1": "Talk about", "con.t2": "your project.",
+        "join.eyebrow": "Careers", "join.t1": "Join", "join.t2": "our House.",
+        "bio.benoit": "Benoît Drouin began at sixteen as an apprentice mason and stonecutter with the Compagnons du Devoir, training on landmark sites and leading major projects such as Villers-Cotterêts, Versailles, the Louvre, Les Invalides, and the spire of Notre-Dame de Paris, for a demanding international clientele (Emirates, USA).",
+        "bio.geoffroy": "For many years Geoffroy Bigo has supported actors of heritage, luxury and tradition. His expertise in the arts and crafts and his fine knowledge of artisan ecosystems make it possible to mobilise the rarest talents for every exceptional project, with absolute respect for original materials and heritage requirements.",
+        "bio.stephanie": "After a career in major groups (Nexity, Groupe Bertrand, EOL, Coreal) and prestigious firms such as FRANC Architecture, Stéphanie guarantees fluid communication, quick decision-making and perfect coherence between the different trades.",
+        "hist.t1": "Our",
+        "hist.t2": "Story",
+        "hist.body": "<p class='essay-text'><span class='firstcap'>T</span>he Majestis Group was born from the desire to unite technical excellence, architectural culture, and high-end support. Drawing on the expertise of professionals in architecture, exceptional renovation, and real estate, the group develops a demanding approach to the built environment. We work on residential, commercial, and heritage assets with a global, contemporary vision.</p><p class='essay-text'>Each project is conceived as a unique creation, combining precision, coherence, and technical mastery. Inspired by the elegance of Parisian heritage, the Majestis Group preserves the identity of places while enhancing them sustainably. Our standards are expressed in the choice of materials, the quality of execution, and the care given to every finish.</p><p class='essay-text'>We pay particular attention to respecting deadlines, budgets, and our clients' expectations. Beyond renovation, we defend a vision of luxury that is sober, elegant, and refined. We accompany architects, investors, building managers, and private owners on their most demanding projects. Today, the Majestis Group stands as a trusted partner in the enhancement of exceptional assets.</p>",
+        "val.t1": "Our",
+        "val.t2": "Values",
+        "val.body": "<p class='essay-text'><span class='firstcap'>O</span>ur values rest above all on rigour, precision, and respect for the commitments made to our clients and partners. We champion an approach in which quality of execution, technical mastery, and attention to detail hold a central place.</p><p class='essay-text'>Attached to architectural heritage and the elegance of works, the Majestis Group ensures the identity of places is preserved while being sustainably enhanced. We believe in a vision of luxury that is sober and timeless, founded on the nobility of materials, aesthetic coherence, and the longevity of creations.</p><p class='essay-text'>Trust, transparency, and listening form the foundation of every collaboration. Our strength also lies in our ability to coordinate complementary savoir-faire around a single level of excellence. Each project is conducted with the same commitment, whether it is a heritage, residential, or commercial asset. The Majestis Group thus carries a vision of high-end renovation that is at once contemporary, institutional, and profoundly human.</p>",
+        "nous.intro": "Three complementary perspectives, one shared demand, the love of a fine gesture, of the right detail, of living heritage.",
+        "exp.pre": "Our", "exp.em": "Expertise",
+        "exp.lead": "An organisation built for <em>the rarest projects</em>.",
+        "exp.intro": "In complex projects, the multiplication of stakeholders is often a source of uncertainty. Majestis simplifies and secures every operation.",
+        "exp.1.t": "Design & technical coordination", "exp.1.p": "Translating the architect's vision into mastered execution, from plan to constructive detail.",
+        "exp.2.t": "Steering the finest trades", "exp.2.p": "Rigorous selection and orchestration of the best French art craftsmen.",
+        "exp.3.t": "Schedule & budget management", "exp.3.p": "A goldsmith's rigour applied to the schedule and economics of the project.",
+        "exp.4.t": "Permanent quality control", "exp.4.p": "A constant demand at every stage, down to the smallest finishing gesture.",
+        "exp.5.t": "A single point of contact", "exp.5.p": "One contact responsible for the entire project management.",
+        "exp.6.t": "Mastery of complex projects", "exp.6.p": "Listed heritage, collector's interiors, private mansions, exceptional residences.",
+        "con.sub": "Every encounter begins with a conversation. We study your project in confidence and deliver a technical and strategic reading within fifteen days.",
+        "contact.write": "Write to",
+        "contact.role": "Director of Key Accounts",
+        "contact.cta": "Write to Stéphanie",
+        "info.addr": "Address",
+        "info.phone": "Phone",
+        "info.email": "Email",
+        "join.sub": "Are you a craftsperson, compagnon, project manager or graduate of the arts &amp; crafts ? Send us your application : every profile is reviewed with care and we reply within fifteen days.",
+        "f.firstname": "First name",
+        "f.lastname": "Last name",
+        "f.email": "Email",
+        "f.phone": "Phone",
+        "f.role": "Position sought",
+        "f.role.placeholder": "Select a craft…",
+        "f.role.compagnon": "Craftsperson — stone, wood, metal…",
+        "f.role.chef": "Site manager",
+        "f.role.charge": "Project manager",
+        "f.role.conducteur": "Works supervisor",
+        "f.role.bet": "Design office",
+        "f.role.alternance": "Apprenticeship / internship",
+        "f.role.autre": "Other",
+        "f.message": "Your message",
+        "f.cv": "Attach a CV (PDF, DOC — 10 MB max)",
+        "f.cv.choose": "Choose a file",
+        "f.consent": "I agree that my information is used to process my application.",
+        "f.submit": "Send my application",
         "bottom.tagline": "— Glass, wood, metal and light",
         "bottom.studio": "Atelier & Studio — 12, rue de Rivoli, Paris 1st",
         "bottom.estd": "— Founded MCMVIII",
@@ -1239,7 +2255,7 @@
       document.documentElement.lang = lang;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (I18N[lang] && I18N[lang][key]) el.textContent = I18N[lang][key];
+        if (I18N[lang] && I18N[lang][key]) el.innerHTML = I18N[lang][key];
       });
       document.querySelectorAll('.lang-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === lang);
@@ -1249,22 +2265,36 @@
       b.addEventListener('click', () => setLang(b.dataset.lang));
     });
 
-    // Nav dropdowns — toggle on click for touch, and keyboard support
-    document.querySelectorAll('.nav-item').forEach(item => {
-      const btn = item.querySelector('.nav-link');
-      const hasDropdown = item.querySelector('.dropdown');
-      if (!hasDropdown) return;
-      btn.addEventListener('click', (e) => {
+    // Smooth-scroll des ancres internes (offset header fixe)
+    function headerOffset(){ const hh = document.getElementById('siteHeader'); return (hh ? hh.offsetHeight : 80) + 14; }
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href').slice(1);
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target) return;
         e.preventDefault();
-        const open = item.classList.toggle('open');
-        btn.setAttribute('aria-expanded', open);
+        const DURATION = 700;
+        const ease = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+        const startY = window.scrollY;
+        const targetY = Math.max(0, target.getBoundingClientRect().top + startY - headerOffset());
+        const dist = targetY - startY, t0 = performance.now();
+        const step = now => { const p = Math.min((now-t0)/DURATION,1); window.scrollTo(0, startY + dist*ease(p)); if (p<1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
       });
     });
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.nav-item')) {
-        document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
-      }
-    });
+    // Scrollspy — surligne le lien de nav actif
+    const spyIds = ['accueil','groupe','expertise','contact'];
+    const spySections = spyIds.map(id => document.getElementById(id)).filter(Boolean);
+    const navLinks = Array.from(document.querySelectorAll('nav.primary .nav-link'));
+    function spy(){
+      const y = window.scrollY + headerOffset() + 24;
+      let curId = 'accueil';
+      spySections.forEach(s => { if (s.getBoundingClientRect().top + window.scrollY <= y) curId = s.id; });
+      navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#'+curId));
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    spy();
     // Header background on scroll
     const siteHeader = document.getElementById('siteHeader');
     function onScroll() {
@@ -1288,24 +2318,10 @@
       </div>
     </div>
     <ul>
-      <li class="md-item"><a class="md-link" href="Home.html"><span data-i18n="nav.home">Accueil</span></a></li>
-      <li class="md-item">
-        <button class="md-link" type="button"><span data-i18n="nav.group">Le Groupe</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>
-        <ul class="md-sub">
-          <li><a href="Portrait.html"><span data-i18n="nav.group.portrait">Portrait</span></a></li>
-          <li><a href="Histoire.html"><span data-i18n="nav.group.histoire">Histoire</span></a></li>
-          <li><a href="Valeurs.html"><span data-i18n="nav.group.valeurs">Valeurs</span></a></li>
-          <li><a href="Expertise.html"><span data-i18n="nav.group.expertise">Expertise</span></a></li>
-        </ul>
-      </li>
-      <li class="md-item"><a class="md-link" href="Art des Metiers.html"><span data-i18n="nav.art">L'Art des Métiers</span></a></li>
-      <li class="md-item">
-        <button class="md-link" type="button"><span data-i18n="nav.contact">Nous contacter</span><svg class="md-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></button>
-        <ul class="md-sub">
-          <li><a href="Contact.html"><span data-i18n="nav.contact.client">Parler de notre projet</span></a></li>
-          <li><a href="Nous Rejoindre.html"><span data-i18n="nav.contact.join">Nous rejoindre</span></a></li>
-        </ul>
-      </li>
+      <li class="md-item"><a class="md-link" href="#accueil"><span data-i18n="nav.home">Accueil</span></a></li>
+      <li class="md-item"><a class="md-link" href="#groupe"><span data-i18n="nav.group">Le Groupe</span></a></li>
+      <li class="md-item"><a class="md-link" href="#expertise"><span data-i18n="nav.expertise">Expertise</span></a></li>
+      <li class="md-item"><a class="md-link" href="#contact"><span data-i18n="nav.contact">Nous contacter</span></a></li>
     </ul>
   </nav>
 
@@ -1453,31 +2469,6 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
     })();
-
-    // Smooth but snappy scroll to #realisations
-    (function() {
-      const DURATION = 700;
-      const easeInOutCubic = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-      const links = document.querySelectorAll('a[href$="#realisations"], a[href="#realisations"]');
-      links.forEach(link => {
-        link.addEventListener('click', e => {
-          const target = document.getElementById('realisations');
-          if (!target) return;
-          e.preventDefault();
-          const startY = window.scrollY;
-          const targetY = target.getBoundingClientRect().top + startY;
-          const distance = targetY - startY;
-          const startTime = performance.now();
-          const step = now => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / DURATION, 1);
-            window.scrollTo(0, startY + distance * easeInOutCubic(progress));
-            if (progress < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        });
-      });
-    })();
   </script>
   <!-- ========================== /FOOTER ========================== -->
 
@@ -1485,5 +2476,41 @@
 
 
 
+
+  <script>
+    // ---------- Join form ----------
+    const fileInput = document.getElementById('cvFile');
+    if (fileInput) {
+      const nameEl = fileInput.parentElement.querySelector('.file-name');
+      fileInput.addEventListener('change', () => {
+        const f = fileInput.files && fileInput.files[0];
+        nameEl.textContent = f ? f.name + ' • ' + (f.size/1024/1024).toFixed(1) + ' Mo' : nameEl.getAttribute('data-empty');
+      });
+    }
+    const joinForm = document.getElementById('joinForm');
+    if (joinForm) {
+      const status = joinForm.querySelector('.join-confirm');
+      joinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!joinForm.checkValidity()) {
+          status.hidden = false;
+          status.classList.add('is-error');
+          status.textContent = (document.documentElement.lang === 'en')
+            ? 'Please fill in all required fields before sending.'
+            : 'Merci de renseigner tous les champs obligatoires avant l\'envoi.';
+          joinForm.reportValidity();
+          return;
+        }
+        status.hidden = false;
+        status.classList.remove('is-error');
+        status.textContent = (document.documentElement.lang === 'en')
+          ? 'Thank you — your application has been received. We will reply within fifteen days.'
+          : 'Merci — votre candidature a bien été reçue. Nous reviendrons vers vous sous quinze jours.';
+        joinForm.reset();
+        const fn = document.querySelector('.file-name');
+        if (fn) fn.textContent = fn.getAttribute('data-empty');
+      });
+    }
+  </script>
 </body>
 </html>
