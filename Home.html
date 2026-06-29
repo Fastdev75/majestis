@@ -1587,7 +1587,7 @@
   .vocation-body { max-width: 880px; }
   .vocation-body p { font-size: clamp(21px, 1.9vw, 29px); line-height: 1.7; }
 
-  #groupe .nous-intro { font-size: clamp(21px, 1.85vw, 28px); max-width: 800px; line-height: 1.6; }
+  #groupe .nous-intro { font-size: clamp(21px, 1.85vw, 28px); max-width: 800px; line-height: 1.6; text-align: center; margin: 22px auto 60px; }
   #groupe .member-desc { font-size: clamp(22px, 1.75vw, 28px); }
 
   #histoire .histoire, #valeurs .histoire { max-width: 920px; }
@@ -1595,8 +1595,12 @@
   #histoire .essay-quote, #valeurs .essay-quote {
     max-width: 840px; margin-left: auto; margin-right: auto; align-items: center;
   }
-  #histoire .essay-quote .qmark.open, #valeurs .essay-quote .qmark.open { align-self: center; }
-  #histoire .essay-quote .qmark.close, #valeurs .essay-quote .qmark.close { align-self: center; }
+  /* Guillemets en début/fin de paragraphe (au lieu de gros guillemets isolés au-dessus/dessous) */
+  #histoire .essay-quote .qmark, #valeurs .essay-quote .qmark { display: none; }
+  #histoire .essay-quote [data-i18n] .essay-text:first-child::before,
+  #valeurs  .essay-quote [data-i18n] .essay-text:first-child::before { content: "“ "; color: var(--gold-1); }
+  #histoire .essay-quote [data-i18n] .essay-text:last-child::after,
+  #valeurs  .essay-quote [data-i18n] .essay-text:last-child::after { content: " ”"; color: var(--gold-1); }
   #histoire .essay-text, #valeurs .essay-text,
   #histoire .essay.reverse .essay-text, #valeurs .essay.reverse .essay-text {
     font-size: clamp(22px, 1.95vw, 31px); line-height: 1.62; text-align: center;
