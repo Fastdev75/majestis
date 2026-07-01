@@ -412,23 +412,33 @@
   .real-carousel .slide.is-active { opacity: 1; }
   .real-carousel .dots {
     position: absolute;
-    bottom: 18px; left: 50%;
+    bottom: 16px; left: 50%;
     transform: translateX(-50%);
-    display: flex; gap: 10px;
+    display: flex; gap: 11px;
     z-index: 4;
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: rgba(10,13,24,0.42);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
   }
+  .real-carousel .dots:empty { display: none; }
   .real-carousel .dots button {
-    width: 8px; height: 8px;
+    width: 12px; height: 12px;
     border-radius: 50%;
-    background: rgba(217,184,106,0.35);
-    border: 0;
+    background: rgba(244,237,224,0.60);
+    border: 1px solid rgba(244,237,224,0.75);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.55);
     cursor: pointer;
     padding: 0;
     transition: background .3s ease, transform .3s ease;
   }
+  .real-carousel .dots button:hover { background: rgba(244,237,224,0.90); }
   .real-carousel .dots button.is-active {
     background: var(--gold-1);
-    transform: scale(1.3);
+    border-color: var(--gold-1);
+    transform: scale(1.35);
+    box-shadow: 0 0 0 3px rgba(217,184,106,0.30), 0 1px 3px rgba(0,0,0,0.55);
   }
 
   .real-text { display: flex; flex-direction: column; }
